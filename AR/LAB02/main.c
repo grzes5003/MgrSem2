@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
         // panic
         exit(11);
     }
-    if (0 != modd(low_value, high_value, size, n, id, p, result)) {
+    if (0 != sieve(low_value, high_value, size, n, id, p, result)) {
         return 9;
     }
 
