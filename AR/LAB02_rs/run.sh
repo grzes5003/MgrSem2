@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH -J MPISieve
+#SBATCH -J MPISieve_rs
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=00:05:00
@@ -8,8 +8,6 @@
 #SBATCH --output="output.out"
 #SBATCH --error="error.err"
 
-srun /bin/hostname
-
 if [ -z "$SCRIPT" ]; then
   TODAY=$(date +"%d_%H_%M")
   exec 3>&1 4>&2
@@ -17,20 +15,15 @@ if [ -z "$SCRIPT" ]; then
   exec 1>log_"$TODAY".log 2>&1
 fi
 
-# module load scipy-bundle/2021.10-intel-2021b
-module load openmpi/4.1.4-gcc-11.3.0
-module load cmake/3.23.1-gcccore-11.3.0
-
-cmake/3.16.4-intel-2020a
-
-openmpi/4.1.2-intel-compilers-2021.4.0
-openmpi/4.0.5-gcc-10.2.0
+module load rust/1.63.0-gcccore-10.3.0
+module load openmpi/4.1.2-intel-compilers-2021.4.0
+module load clang
 
 echo "Compiling LAB02"
 
-cmake .
-make LAB02
+cargo update
+cargo build --release
 
 echo "Starting LAB02"
 
-mpiexec -np 4 ./LAB02 10000
+mpiexec -np 4 ./target/release/LAB02 10000
