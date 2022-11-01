@@ -17,9 +17,14 @@ if [ -z "$SCRIPT" ]; then
   exec 1>log_"$TODAY".log 2>&1
 fi
 
-module load scipy-bundle/2021.10-intel-2021b
+# module load scipy-bundle/2021.10-intel-2021b
 module load openmpi/4.1.4-gcc-11.3.0
 module load cmake/3.23.1-gcccore-11.3.0
+
+cmake/3.16.4-intel-2020a
+
+openmpi/4.1.2-intel-compilers-2021.4.0
+openmpi/4.0.5-gcc-10.2.0
 
 echo "Compiling LAB02"
 

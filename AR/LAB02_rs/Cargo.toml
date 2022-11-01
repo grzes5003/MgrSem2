@@ -1,0 +1,8 @@
+[package]
+name = "LAB02"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+libffi = "3.0.1"
+mpi = "0.6.0"
