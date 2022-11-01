@@ -8,7 +8,6 @@
 #SBATCH -p plgrid
 #SBATCH --output="output.out"
 #SBATCH --error="error.err"
-#SBATCH --mail-user
 
 srun /bin/hostname
 
@@ -30,4 +29,4 @@ make LAB02
 
 echo "Starting LAB02"
 
-mpiexec ./LAB02 10000
+mpiexec -np 4 ./LAB02 10000
