@@ -1,6 +1,7 @@
 use mpi::request::WaitGuard;
 use mpi::traits::*;
 
+
 fn main() {
     let universe = mpi::initialize().unwrap();
     let world = universe.world();
