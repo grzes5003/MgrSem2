@@ -55,8 +55,7 @@ int main(int argc, char** argv) {
 
     if (id == 0)   {
         global_count += 1;
-        printf("%d in %d\n", global_count, n);
-        printf("t=%10.6fs\n", elapsed_time);
+        printf("t=%10.6fs;%d;%d\n", elapsed_time, global_count, n);
     }
 
     MPI_Finalize();

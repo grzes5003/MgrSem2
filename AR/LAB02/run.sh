@@ -8,9 +8,9 @@
 #SBATCH -p plgrid
 #SBATCH --output="output.out"
 #SBATCH --error="error.err"
+#SBATCH --mail-user
 
 srun /bin/hostname
-cd "$SLURM_SUBMIT_DIR" || exit
 
 if [ -z "$SCRIPT" ]; then
   TODAY=$(date +"%d_%H_%M")
@@ -19,17 +19,15 @@ if [ -z "$SCRIPT" ]; then
   exec 1>log_"$TODAY".log 2>&1
 fi
 
-## Zaladowanie modulu IntelMPI
-module add plgrid/tools/impi
+module load scipy-bundle/2021.10-intel-2021b
+module load openmpi/4.1.4-gcc-11.3.0
+module load cmake/3.23.1-gcccore-11.3.0
 
-echo "Compiling " "$1"
-
-module add plgrid/tools/openmpi
-module add plgrid/tools/cmake
+echo "Compiling LAB02"
 
 cmake .
-make "$1"
+make LAB02
 
-echo "Starting " "$1"
+echo "Starting LAB02"
 
-mpiexec ./lab02 10000
+mpiexec ./LAB02 10000
