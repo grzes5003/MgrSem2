@@ -2,7 +2,6 @@
 #SBATCH -J MPISieve
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=4
-#SBATCH --mem-per-cpu=128MB
 #SBATCH --time=00:05:00
 #SBATCH -A plgar2022-cpu
 #SBATCH -p plgrid

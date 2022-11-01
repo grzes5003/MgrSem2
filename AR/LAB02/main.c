@@ -45,6 +45,7 @@ int main(int argc, char** argv) {
         exit(11);
     }
     if (0 != sieve(low_value, high_value, size, n, id, p, result)) {
+        printf("sieve exited with unexpected value");
         return 9;
     }
 
