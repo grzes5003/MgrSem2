@@ -26,4 +26,4 @@ cargo build --release
 
 echo "Starting LAB02"
 
-mpiexec -np 4 ./LAB02 10000
+mpiexec -np 4 ./target/release/LAB02 10000
