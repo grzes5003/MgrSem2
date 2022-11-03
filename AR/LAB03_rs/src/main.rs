@@ -37,20 +37,6 @@ fn main() {
     let p = world.size() as Procs;
     let rank = world.rank() as Procs;
 
-    // let grid_len = env::args().nth(1)
-    //     .unwrap_or("100".to_string())
-    //     .parse::<Procs>()
-    //     .unwrap();
-    //
-    // let iterations = env::args().nth(2)
-    //     .unwrap_or("100".to_string())
-    //     .parse::<Procs>()
-    //     .unwrap();
-    // let slice_length = (grid_len as f32 / p as f32 + 0.5f32) as Procs + 1;
-    //
-    // let save_result = env::args().nth(3)
-    //     .unwrap_or("0".to_string());
-
     let args: Args = Args::parse();
     let (grid_len, iterations, save_result) = (
         args.grid_len,
@@ -63,8 +49,6 @@ fn main() {
 
     let mut matrix =
         gen_matrix(slice_length, grid_len + 2, || rand::thread_rng().gen::<f32>());
-
-    println!("{:?}", matrix.get(0));
 
     for y in 0..(end - begin + 1) {
         matrix[y][0] = 0f32;
@@ -90,22 +74,12 @@ fn main() {
     if rank == root_rank {
         // println!("{:?}", result[0]);
         let t_end = mpi::time();
-        println!("t={};it={};n={}", t_end - t_start, iterations, grid_len);
+        println!("t={};it={};n={};p={}", t_end - t_start, iterations, grid_len, p);
         if save_result {
-            // let mut arr = Array2::zeros((result.len(), result[0].len()));
-            // let v = result.into_iter()
-            //     .map(|row| Array::from_vec(row))
-            //     .collect();
             let mut arr = Array2::from_shape_vec(
                 (result.len(), result[0].len()),
                 result.into_iter().flatten().collect::<Vec<f32>>()).unwrap().to_owned();
-
-            // let result1 =
-            //     Array2::from_shape_vec((result.len(), result[0].len()), v);
-            // for (i, &mut row) in arr.axis_iter_mut(Axis(0)).enumerate() {
-            //     row = Array::from_vec(result[i].clone())
-            // }
-            write_npy("result.npy", &arr);
+            write_npy("results/result.npy", &arr);
         }
     }
 }
