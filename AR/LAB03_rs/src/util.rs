@@ -13,7 +13,34 @@ type Float = f32;
 #[derive(Equivalence)]
 pub struct Pair(pub Procs, pub Procs);
 
-pub fn get_slices(comm: &SystemCommunicator, rank: Procs, p: Procs, grid_len: Procs) -> Pair {
+pub struct CommConfig<'a> {
+    comm: &'a SystemCommunicator,
+    rank: Procs,
+    p: Procs,
+    grid_len: Procs,
+}
+
+impl<'a> CommConfig<'a> {
+    pub fn unpack(&self) -> (
+        &'a SystemCommunicator,
+        Procs, Procs, Procs
+    ) {
+        (self.comm, self.rank, self.p, self.grid_len)
+    }
+
+    pub fn new(comm: &'a SystemCommunicator,
+               rank: Procs, p: Procs, grid_len: Procs) -> Self {
+        CommConfig {
+            comm,
+            rank,
+            p,
+            grid_len
+        }
+    }
+}
+
+pub fn get_slices(comm_config: &CommConfig) -> Pair {
+    let (comm, rank, p, grid_len) = comm_config.unpack();
     match rank {
         0 => {
             let mut length_per_core = grid_len / p;
@@ -44,10 +71,11 @@ pub fn gen_matrix<F>(x: usize, y: usize, generator: F) -> Vec<Vec<Float>>
         .collect()
 }
 
-pub fn update_matrix(comm: &SystemCommunicator, rank: Procs, p: Procs, grid_len: Procs,
+pub fn update_matrix(comm_config: &CommConfig,
                      matrix: Matrix, matrix_tmp: &mut Matrix,
                      mut up_slice: Vec<Float>, mut down_slice: Vec<Float>, pair: Pair
 ) -> Matrix {
+    let (comm, rank, p, grid_len) = comm_config.unpack();
     let (begin, end) = (pair.0, pair.1);
 
     if rank % 2 == 0 {
@@ -59,8 +87,6 @@ pub fn update_matrix(comm: &SystemCommunicator, rank: Procs, p: Procs, grid_len:
             let res = comm.process_at_rank((rank + 1) as Rank)
                 .receive_vec();
             up_slice = res.0;
-        }
-        if rank < p - 1 {
             comm.process_at_rank((rank + 1) as Rank)
                 .send(&matrix[end - begin][..]);
         }
@@ -78,8 +104,6 @@ pub fn update_matrix(comm: &SystemCommunicator, rank: Procs, p: Procs, grid_len:
         if rank > 0 {
             comm.process_at_rank((rank - 1) as Rank)
                 .send(&matrix[0][..]);
-        }
-        if rank > 0 {
             let res = comm.process_at_rank((rank - 1) as Rank)
                 .receive_vec();
             down_slice = res.0;
@@ -116,8 +140,9 @@ pub fn update_matrix(comm: &SystemCommunicator, rank: Procs, p: Procs, grid_len:
     matrix_tmp.to_owned()
 }
 
-pub fn join_calc(comm: &SystemCommunicator, rank: Procs, p: Procs, grid_len: Procs,
-             matrix: Matrix, slice_len: Procs, result: &mut Matrix) {
+pub fn join(comm_config: &CommConfig, matrix: Matrix, result: &mut Matrix) {
+    let (comm, rank, p, grid_len) = comm_config.unpack();
+
     if rank == 0 {
         let mut idx = 0;
         for row in matrix {

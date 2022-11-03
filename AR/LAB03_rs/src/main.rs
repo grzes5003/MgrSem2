@@ -4,7 +4,7 @@ use mpi::collective::CommunicatorCollectives;
 use mpi::topology::Communicator;
 use ndarray::{Array, array, Array2, Axis};
 use ndarray_npy::write_npy;
-use crate::util::{gen_matrix, get_slices, join_calc, Pair, update_matrix};
+use crate::util::{CommConfig, gen_matrix, get_slices, join, Pair, update_matrix};
 use rand::Rng;
 use rand::rngs::ThreadRng;
 
@@ -44,7 +44,9 @@ fn main() {
         args.save_results);
     let slice_length = (grid_len as f32 / p as f32 + 0.5f32) as Procs + 1;
 
-    let pair: Pair = get_slices(&world, rank, p, grid_len);
+    let comm_config = CommConfig::new(&world, rank, p, grid_len);
+
+    let pair: Pair = get_slices(&comm_config);
     let (begin, end) = (pair.0, pair.1);
 
     let mut matrix =
@@ -61,13 +63,12 @@ fn main() {
     let mut result = gen_matrix(grid_len, grid_len + 2, || 0f32);
 
     for _ in 0..iterations {
-        matrix = update_matrix(&world, rank, p, grid_len,
-                               matrix, &mut matrix_tmp,
+        matrix = update_matrix(&comm_config, matrix, &mut matrix_tmp,
                                up_slice.clone(), down_slice.clone(),
                                Pair(begin, end));
     }
 
-    join_calc(&world, rank, p, grid_len, matrix, slice_length, &mut result);
+    join(&comm_config, matrix, &mut result);
     world.barrier();
 
     if rank == root_rank {
