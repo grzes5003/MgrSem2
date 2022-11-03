@@ -58,8 +58,7 @@ fn main() {
     let mut matrix_tmp = gen_matrix(slice_length, grid_len + 2, || 0f32);
     let up_slice = vec![0f32; grid_len as usize + 2];
     let down_slice = vec![0f32; grid_len as usize + 2];
-    let mut result = gen_matrix(slice_length, grid_len + 2, || 0f32);
-
+    let mut result = gen_matrix(grid_len, grid_len + 2, || 0f32);
 
     for _ in 0..iterations {
         matrix = update_matrix(&world, rank, p, grid_len,
@@ -72,7 +71,6 @@ fn main() {
     world.barrier();
 
     if rank == root_rank {
-        // println!("{:?}", result[0]);
         let t_end = mpi::time();
         println!("t={};it={};n={};p={}", t_end - t_start, iterations, grid_len, p);
         if save_result {

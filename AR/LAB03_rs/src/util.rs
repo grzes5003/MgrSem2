@@ -131,7 +131,7 @@ pub fn join_calc(comm: &SystemCommunicator, rank: Procs, p: Procs, grid_len: Pro
         for i in 0..(p - 1) {
             let res = comm.process_at_rank((i + 1) as Rank)
                 .receive_vec::<Float>();
-            let tmp: Matrix = res.0.chunks(slice_len)
+            let tmp: Matrix = res.0.chunks(grid_len + 2)
                 .map(|v| v.to_vec())
                 .collect();
 
