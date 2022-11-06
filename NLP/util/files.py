@@ -19,3 +19,9 @@ def read_files_dir(path: str) -> Iterator[Tuple[str]]:
     for filename in files:
         with open(f'{path}/{filename}', encoding='utf-8') as f:
             yield filename, f.read()
+
+
+def read_files_list(files: [str]) -> Iterator[Tuple[str]]:
+    for filename in files:
+        with open(filename, 'r', encoding='utf-8',) as f:
+            yield f.read()
