@@ -16,3 +16,4 @@ setuptools==65.0.2
 six==1.16.0
 wheel==0.37.1
 elasticsearch
+spacy==3.4

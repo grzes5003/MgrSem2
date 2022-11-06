@@ -11,7 +11,6 @@ def read_lines(filepath: str) -> [str]:
 def read_lines_dir(path: str) -> [(str, [str])]:
     files = os.listdir(path)
 
-    # return [(file, read_lines(f'{path}/{file}')) for file in files if file == '1994_195.txt']
     return [(file, read_lines(f'{path}/{file}')) for file in files]
 
 
