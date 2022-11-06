@@ -1,3 +1,4 @@
+import functools
 import os
 from collections import Counter
 from typing import Callable
@@ -33,20 +34,23 @@ def get_freq_df(doc: Doc, filter: Callable[[Token], bool] = None) -> pd.DataFram
     return pd.DataFrame(word_freq.items(), columns=['word', 'freq'])
 
 
-def concat(dfs: [pd.DataFrame]) -> pd.DataFrame:
-    return pd.concat(dfs).groupby(['word', 'freq']).sum().reset_index()
+def concat(*args: pd.DataFrame) -> pd.DataFrame:
+    return pd.concat(args).groupby(['word']).sum().reset_index()
 
 
 def pipe(file_names: [str]):
+    print(f"P{mp.current_process()}: starting")
     files = [(file_name, '\n'.join(read_lines(file_name))) for file_name in file_names]
 
     nlp = spacy.load("pl_core_news_md")
     tokenizer = custom_tokenizer(nlp)
     nlp.tokenizer = tokenizer
 
+    print(f"P{mp.current_process()}: parsing")
     docs = [(file_name, nlp(content)) for file_name, content in files]
-    dfs = [get_freq_df(doc[1], is_excluded) for doc in docs]
-    df = concat(dfs)
+    print(f"P{mp.current_process()}: concatenating")
+    df = functools.reduce(concat, [get_freq_df(doc[1], is_excluded) for doc in docs])
+    print(f"P{mp.current_process()}: done")
     return df
 
 
@@ -57,30 +61,20 @@ def exc_05():
 if __name__ == '__main__':
     path = 'C:/Users/xgg/PycharmProjects/NLP/data/ustawy'
 
-    files = os.listdir(path)[:20]
+    files = os.listdir(path)
     file_names = [f'{path}/{file}' for file in files]
 
-    # [(file_name, '\n'.join(content)) for file_name, content in read_lines_dir(path)]
-
-    # nlp = spacy.load("pl_core_news_md")
-    # tokenizer = custom_tokenizer(nlp)
-    # nlp.tokenizer = tokenizer
-
-    p_cout = min(mp.cpu_count(), 4)
-    n = int(len(file_names)/p_cout)
-    with mp.Pool(processes=p_cout) as pool:
-        df = pool.map(
+    p_count = min(mp.cpu_count(), 6)
+    n = int(len(file_names) / p_count)
+    print(f"{p_count} for {n} each")
+    with mp.Pool(processes=p_count) as pool:
+        dfs = pool.map(
             pipe,
             [file_names[i:i + n] for i in range(0, len(file_names), n)]
         )
 
-    # docs = [(file_name, nlp(content)) for file_name, content in files]
-    #
-    # dfs = [get_freq_df(doc[1], is_excluded) for doc in docs]
-    # df = concat(dfs)
+    print(f"concatenating")
+    df_res = functools.reduce(concat, dfs)
 
-    plot_data2(df.sort_values(by='freq', ascending=False)[:50], x='word', y='freq', hue=False, errorbar='ci')
-
-    # common_words = word_freq.most_common(5)
-
+    plot_data2(df_res.sort_values(by='freq', ascending=False)[:50], x='word', y='freq', hue=False, errorbar='ci')
     ...

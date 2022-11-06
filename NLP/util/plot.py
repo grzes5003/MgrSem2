@@ -46,6 +46,7 @@ def plot_data(df: pd.DataFrame, *, hue=True,
 
 def plot_data2(df: pd.DataFrame, *, hue=True,
               x='year', y='number', errorbar: str = None):
+    sns.set(rc={'figure.figsize': (11.7, 8.27)})
     sns.set_theme()
 
     print(df)
