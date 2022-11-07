@@ -110,7 +110,7 @@ Examples of augmented data
 Results of augmented and original results:
 
 Original learning results
-![augmented data](results/img_6_2.png)
+![augmented data](results/img_0.png)
 
 Augmented learning results
 ![augmented data](results/img_5_2.png)
