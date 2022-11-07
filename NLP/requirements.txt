@@ -18,3 +18,4 @@ wheel==0.37.1
 elasticsearch
 spacy==3.4
 morfeusz2
+levenshtein

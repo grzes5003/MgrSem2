@@ -76,3 +76,74 @@ pkt,35
 129      bez   2324
 207  którego   2117
 216       ma   1960
+
+# 11)
+[(1, 'poz', 'po'), (2, 'późn', 'paź'), (1, 'str', 'st'), (1, 'GMO', 'IMO'), (2, 'SWW', 'EWG'), (1, 'operacyjno', 'operacyjna'), (2, 'SKW', 'DK'), (1, 'zm', 'Mm'), (1, 'ex', 'ej'), (2, 'IKE', 'BSE'), (1, 'rolno', 'Wolno'), (1, 'techniczno', 'techniczna'), (2, 'remediacji', 'mediacji'), (2, 'rozdz', 'rodu'), (1, 'URE', 'UE'), (1, 'UKE', 'UE'), (1, 'itp', 'ity'), (1, 'kN', 'EN'), (1, 'charytatywno', 'charytatywne'), (1, 'sanitarno', 'sanitarna'), (1, 'CN', 'CE'), (3, 'PKWiU', 'KU'), (1, 'UDT', 'DDT'), (1, 'społeczno', 'społeczna'), (1, 'np', 'Lp'), (3, 'BSWSG', 'BSE'), (2, 'BSWP', 'BSE'), (1, 'Społeczno', 'Społeczna'), (4, 'Biobójczych', 'dowódczych'), (1, 'organizacyjno', 'organizacyjna')]
+
+[(1, 'instrumen', 'instrument'), (3, 'Betezda', 'Betel'), (2, 'teryto', 'tery'), (2, 'RCI', 'AC'), (5, 'Contagious', 'Notariusz'), (1, 'ym', 'Mm'), (1, 'ośc', 'oś'), (1, 'Agave', 'Agape'), (4, 'próbobiorców', 'pracobiorcą'), (7, 'EudraVigilance', 'udzielane'), (1, 'wapnio', 'wapni'), (1, 'wodno', 'wodna'), (1, 'tów', 'nów'), (1, 'jed', 'je'), (1, 'mieszkalno', 'mieszkalne'), (2, 'heptanol', 'Metanol'), (1, 'najmnie', 'najmie'), (4, 'chelatującym', 'chorującym'), (1, 'funkcjonalno', 'funkcjonalne'), (2, 'JWH', 'EWG'), (1, 'tzn', 'tan'), (3, 'KPWiG', 'EWG'), (1, 'GJ', 'GR'), (2, 'remediację', 'mediację'), (2, 'organicz', 'organach'), (3, 'denitracyjne', 'bonitacyjne'), (1, 'inspekcyjno', 'inspekcyjna'), (1, 'szcze', 'szcza'), (1, 'RR', 'AR'), (1, 'informacyjno', 'informacyjna')]
+
+
+
+    dist            org            sug
+0      1            poz             po
+1      2           późn            paź
+2      1            str             st
+3      1            GMO            IMO
+4      2            SWW            EWG
+5      1     operacyjno     operacyjna
+6      2            SKW             DK
+7      1             zm             Mm
+8      1             ex             ej
+9      2            IKE            BSE
+10     1          rolno          Wolno
+11     1     techniczno     techniczna
+12     2     remediacji       mediacji
+13     2          rozdz           rodu
+14     1            URE             UE
+15     1            UKE             UE
+16     1            itp            ity
+17     1             kN             EN
+18     1   charytatywno   charytatywne
+19     1      sanitarno      sanitarna
+20     1             CN             CE
+21     3          PKWiU             KU
+22     1            UDT            DDT
+23     1      społeczno      społeczna
+24     1             np             Lp
+25     3          BSWSG            BSE
+26     2           BSWP            BSE
+27     1      Społeczno      Społeczna
+28     4    Biobójczych     dowódczych
+29     1  organizacyjno  organizacyjna
+
+    dist                  org          sug
+0      2             organicz     organach
+1      1             rialnego     realnego
+2      4             Schetyna        Ocena
+3      3                KPWiG          EWG
+4      1          inspekcyjno  inspekcyjna
+5      7       EudraVigilance    udzielane
+6      1                vista        Lista
+7      2             heptanol      Metanol
+8      1              najmnie       najmie
+9      1                   GJ           GR
+10     4             Shigella       Diesla
+11     1           mieszkalno   mieszkalne
+12     1           edukacyjno   edukacyjna
+13     8      difenylopropylo     difenyle
+14     1                wodno        wodna
+15     1                  jed           je
+16     2               teryto         tery
+17     2                 Wlkp         Walk
+18     1               cznika      ocznika
+19     1                   RR           AR
+20     9  metylofenetyloamina  metyloamino
+21     1                 ppkt          pkt
+22     1               wapnio        wapni
+23     1               zawart      zawarta
+24     1                Agave        Agape
+25     1                  ami           am
+26     1                szcze        szcza
+27     1            instrumen   instrument
+28     1                   ym           Mm
+29     1                  URT          ART

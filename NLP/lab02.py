@@ -1,63 +1,7 @@
 from typing import Mapping, Any
 
 from elastic_transport import ObjectApiResponse
-from elasticsearch import Elasticsearch
-import os
-
-from util import read_files_dir
-
-if (ELASTIC_PASSWORD := os.environ['ELASTIC_PASSWORD']) is None:
-    exit(11)
-
-if (ES_PATH := os.environ['ES_PATH']) is None:
-    exit(11)
-
-client = Elasticsearch(
-    "https://localhost:9200",
-    ca_certs=f"{ES_PATH}\\config\\certs\\http_ca.crt",
-    basic_auth=("elastic", ELASTIC_PASSWORD)
-)
-
-
-def setup_es():
-    settings = {
-        'analysis': {
-            "analyzer": {
-                "ustawy_analyzer": {
-                    "type": "custom",
-                    "tokenizer": "standard",
-                    "filter": [
-                        "lowercase",
-                        "asciifolding",
-                        "morfologik_stem",
-                        "synonyms_filter"
-                    ]
-                }
-            },
-            "filter": {
-                "synonyms_filter": {
-                    "type": "synonym",
-                    "synonyms": [
-                        "kpk => kodeks postępowania karnego",
-                        "kpc => kodeks postępowania cywilnego",
-                        "kk => kodeks karny",
-                        "kc => kodeks cywilny"]
-                }
-            },
-        }
-    }
-
-    mapping = {
-        "properties": {
-            "text": {
-                "type": "text",
-                "analyzer": "ustawy_analyzer"
-            }
-        }
-    }
-
-    if not client.indices.exists(index='ustawy'):
-        resp0 = client.indices.create(index='ustawy', settings=settings, mappings=mapping)
+from util import read_files_dir, client, setup_es, load_docs
 
 
 def search(query: Mapping[str, Any], *, highlight: Mapping[str, Any] = None) -> ObjectApiResponse:
@@ -177,16 +121,8 @@ def exc12():
 
 if __name__ == '__main__':
     path = 'C:/Users/xgg/PycharmProjects/NLP/data/ustawy'
-    files = list(read_files_dir(path))
-
     setup_es()
-
-    if client.count(index='ustawy')['count'] != len(files):
-        print('creating documents from files')
-        for file in files:
-            doc = {'text': file[1]}
-            if (res := client.index(index='ustawy', document=doc, id=file[0])['result']) == 'error':
-                exit(13)
+    load_docs(path)
 
     print(f'{exc06()=}')
     print(f'{exc07()=}')

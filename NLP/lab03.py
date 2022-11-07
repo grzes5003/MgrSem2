@@ -1,8 +1,10 @@
 import functools
 import os
+import time
 from collections import Counter
 from typing import Callable
 
+import Levenshtein
 import morfeusz2
 from spacy import Language
 from spacy.lang.pl import Polish
@@ -13,7 +15,7 @@ import pandas as pd
 from pathlib import Path
 import multiprocessing as mp
 
-from util import plot_data2, read_files_list
+from util import plot_data2, read_files_list, setup_es, load_docs, client, load_file_to_doc
 
 
 def custom_tokenizer(nlp: Language = Polish()) -> Tokenizer:
@@ -98,17 +100,36 @@ def exc_08_09_10(df: pd.DataFrame):
     df_rnd = df_result[df['freq'] == 5].sample(frac=1)[:30]
     df_rnd.to_csv('results/lab03/lab03_freq_rand.csv', index=False)
 
-    return df_result
+    return df_result, df_top, df_rnd
 
 
-def exc_10(df_all: pd.DataFrame, df_nondict: pd.DataFrame):
+def exc_10(df_all: pd.DataFrame, df_nondict: pd.DataFrame, df_top: pd.DataFrame, df_rnd: pd.DataFrame):
     """
     Use Levenshtein distance and the frequency list, to determine the most probable correction
     of the words from lists defined in points 8 and 9. (Note: You don't have to apply the
     distance directly. Any method that is more efficient than scanning the dictionary
     will be appreciated.)
     """
-    ...
+    df_dict = df_all.merge(df_nondict.drop_duplicates(), on=['word', 'freq'], how='left', indicator=True)
+    df_dict = df_dict[df_dict['_merge'] == 'left_only']
+
+    autocorr_top = []
+    autocorr_rnd = []
+    tic = time.perf_counter()
+    for word_top, word_rnd in zip(df_top['word'], df_rnd['word']):
+        autocorr_top.append(min([(Levenshtein.distance(word_top, dict_word), word_top, dict_word) for dict_word in df_dict['word']],
+                            key=lambda item: item[0]))
+        autocorr_rnd.append(
+            min([(Levenshtein.distance(word_rnd, dict_word), word_rnd, dict_word) for dict_word in df_dict['word']],
+                key=lambda item: item[0]))
+    toc = time.perf_counter()
+    print(f"time={toc - tic:0.4f}")
+
+    df_sug_top = pd.DataFrame(autocorr_top, columns=['dist', 'org', 'sug'])
+    df_sug_rng = pd.DataFrame(autocorr_rnd, columns=['dist', 'org', 'sug'])
+
+    print(df_sug_top)
+    print(df_sug_rng)
 
 
 if __name__ == '__main__':
@@ -119,10 +140,16 @@ if __name__ == '__main__':
     if not results_file.is_file():
         exc_05(path)
 
-    df = pd.read_csv(results_filepath)
+    # df = pd.read_csv(results_filepath)
     # exc_07(df)
 
-    df_nondict = exc_08_09_10(df)
+    # df_nondict, df_top, df_rnd = exc_08_09_10(df)
 
-    exc_10()
+    # exc_10(df, df_nondict, df_top, df_rnd)
+
+    setup_es()
+    load_docs(path)
+    load_file_to_doc('data/sgjp/sgjp-20221030.tab', name='sgjp')
+
+    print('done')
 
