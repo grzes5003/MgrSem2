@@ -1,0 +1,5 @@
+matplotlib~=3.6.1
+numpy~=1.22.3
+Pillow~=9.2.0
+opencv-python~=4.5.5.64
+keras~=2.9.0

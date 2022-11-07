@@ -1,0 +1,12 @@
+@relation autohandlarz
+
+@attribute width  numeric 1
+@attribute width  numeric 2
+@attribute width  numeric 3
+@attribute width  numeric 4
+@attribute width  numeric 5
+@attribute width  numeric 1
+@attribute width  numeric 2
+@attribute width  numeric 3
+@attribute width  numeric 4
+@attribute width  numeric 5
