@@ -1,6 +1,15 @@
 
 # Laboratory 04
 
+<!-- TOC -->
+* [Laboratory 04](#laboratory-04)
+    * [Save best weights](#save-best-weights)
+    * [Create functionality to load best model and predict image](#create-functionality-to-load-best-model-and-predict-image)
+    * [Extend scripts with augmentations functions](#extend-scripts-with-augmentations-functions)
+    * [Compare results](#compare-results)
+    * [Fine tunning](#fine-tunning)
+<!-- TOC -->
+
 ### Save best weights
 Added callback instance of ModelChackpoint 
 ```python
