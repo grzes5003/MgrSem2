@@ -1,0 +1,44 @@
+@relation OTOMOTO
+
+@attribute type             {sport_car,motorcycle,suv,lorry,sedan}
+@attribute max_speed        NUMERIC
+@attribute mass             NUMERIC
+@attribute num_of_doors     NUMERIC
+@attribute fuel_tank_cap    NUMERIC
+@attribute max_passangers   NUMERIC
+@attribute num_of_tires     NUMERIC
+@attribute avg_fuel_coms    NUMERIC
+@attribute make             STRING
+@attribute fuel_type        {petrol,desel}
+
+@data
+sport_car,330,1500,2,66,4,4,10,porsche,petrol
+sport_car,275,1600,2,63,2,4,10,jaguar,petrol
+motorcycle,270,226,0,20,2,2,6,Bmw,petrol
+motorcycle,185,174,0,20,2,2,4,suzuki,petrol
+motorcycle,185,174,0,17,2,2,5,kawasaki,petrol
+motorcycle,180,170,0,18,2,2,5,honda,petrol
+sport_car,407,1888,2,100,2,4,25,Bugatti,petrol
+sport_car,384,1547,2,60,2,4,18,maclaren,petrol
+suv,275,2400,5,83,7,4,12,Bmw,desel
+suv,240,2500,5,90,7,4,12,Mercedes,desel
+suv,200,1600,5,80,7,4,9,skoda,petrol
+suv,180,1300,5,63,5,4,9,Mitsubishi,petrol
+lorry,120,6500,2,445,2,4,25,volvo,desel
+lorry,95,5900,2,500,2,6,30,scania,desel
+sedan,160,1100,5,48,5,4,8,Daewoo,petrol
+sedan,159,1120,5,45,5,4,7,skoda,petrol
+sedan,145,955,5,47,5,4,6.5,Fiat,petrol
+sedan,150,896,4,45,5,4,6.7,Toyota,petrol
+lorry,100,6900,2,600,3,4,30,Man,desel
+lorry,82,8324,2,550,1,6,25.7,Mercedes,desel
+sedan,230,1820,4,80,4,4,7.6,Mercedes,petrol
+sport_car,250,2070,4,68,5,4,11.5,Bmw,petrol
+motorcycle,170,168,0,14,2,2,4.5,Kawasaki,petrol
+sport_car,325,1100,2,120,2,4,18,Ferrari,petrol
+motorcycle,168,304,0,18.9,2,2,8.7,harley davidson,potrol
+suv,213,1800,5,60,5,4,15,range rover,desel
+suv,237,1460,5,51,5,4,14,Bmw,desel
+lorry,90,7430,2,600,2,6,37,Renault,desel
+lorry,100,6500,2,1215,2,4,24.7,DAF,desel
+sedan,220,1551,4,66,5,4,5.8,Volkswagen,desel

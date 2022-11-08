@@ -1,0 +1,31 @@
+type,max_speed,mass,num_of_doors,fuel_tank_cap,max_passangers,num_of_tires,avg_fuel_coms,make,fuel_type,name_of_car
+sport_car,330,1500,2,66,4,4,10,porsche,petrol,porsche 911 
+sport_car,275,1600,2,63,2,4,10,jaguar,petrol,Jaguar F-Type
+motorcycle,270,226,0,20,2,2,6,bmw,petrol,BMW S1000XR
+motorcycle,185,174,0,20,2,2,4,suzuki,petrol,gs 500 
+motorcycle,185,174,0,17,2,2,5,kawasaki,petrol,ER-5
+motorcycle,180,170,0,18,2,2,5,honda,petrol,cb 500
+sport_car,407,1888,2,100,2,4,25,Bugatti,petrol,Veyron
+sport_car,384,1547,2,60,2,4,18,maclaren,petrol,p1
+suv,275,2400,5,83,7,4,12,bmw,desel,x7
+suv,240,2500,5,90,7,4,12,mercedes,desel,gsl
+suv,200,1600,5,80,7,4,9,skoda,petrol,Kodiaq
+suv,180,1300,5,63,5,4,9,Mitsubishi,petrol,ASX
+lorry,120,6500,2,445,2,4,25,volvo,desel,FH 400
+lorry,95,5900,2,500,2,6,30,scania,desel,R520
+sedan,160,1100,5,48,5,4,8,Daewoo,petrol,Lanos
+sedan,159,1120,5,45,5,4,7,Škoda,petrol,Fabia
+sedan,145,955,5,47,5,4,6.5,Fiat,petrol,Punto
+sedan,150,896,4,45,5,4,6.7,Toyota,petrol,yaris
+lorry,100,6900,2,600,3,4,30,Man,desel,TGX
+lorry,82,8324,2,550,1,6,25.7,Mercedes,desel,Actros
+sedan,230,1820,4,80,4,4,7.6,Mercedes,petrol,amg cls
+sport_car,250,2070,4,68,5,4,11.5,BMW,petrol,M8 Gran Coupé
+motorcycle,170,168,0,14,2,2,4.5,Kawasaki,petrol,ninja 400
+sport_car,325,1100,2,120,2,4,18,Ferrari,petrol,F40
+motorcycle,168,304,0,18.9,2,2,8.7,harley davidson,potrol,fat boy
+suv,213,1800,5,60,5,4,15,range rover,desel,evoque
+suv,237,1460,5,51,5,4,14,bmw,desel,x2
+lorry,90,7430,2,600,2,6,37,Renault ,desel,Magnum
+lorry,100,6500,2,1215,2,4,24.7,DAF ,desel,XF 106
+sedan,220,1551,4,66,5,4,5.8,Volkswagen,desel,Passat VIII
