@@ -1,0 +1,626 @@
+Index: RCR/OpenGL14/model.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/RCR/OpenGL14/model.cpp b/RCR/OpenGL14/model.cpp
+--- a/RCR/OpenGL14/model.cpp	(revision 4e70c36ef8b6198d9370d5e0474308e644db6ea5)
++++ b/RCR/OpenGL14/model.cpp	(date 1668004967929)
+@@ -5,8 +5,7 @@
+ #include <QDebug>
+ 
+ 
+-void Model::readFile(QString fname, bool readNormals, bool readTextures, float scale)
+-{
++void Model::readFile(QString fname, bool readNormals, bool readTextures, float scale) {
+     qDebug() << "Czytam '" << fname << "'...";
+ 
+     read_normals = readNormals;
+@@ -27,12 +26,17 @@
+     parse_items(scale);
+ }
+ 
++GLuint Model::getVBO() const {
++    return VBO;
++}
+ 
+-void Model::count_items()
+-{
++GLuint Model::getEBO() const {
++    return EBO;
++}
++
++void Model::count_items() {
+     v_cnt = vn_cnt = vt_cnt = f_cnt = 0;
+-    for (int i = 0; i < source.count(); i++)
+-    {
++    for (int i = 0; i < source.count(); i++) {
+         if (source[i].startsWith("v "))
+             v_cnt++;
+         else if (source[i].startsWith("vn "))
+@@ -49,138 +53,162 @@
+ }
+ 
+ 
+-void Model::alloc_items()
+-{
+-    v = new float[3*v_cnt];
+-    memset(v, 0, sizeof(float)*3*v_cnt);
+-    if (read_normals)
+-    {
+-      vn = new float[3*vn_cnt]();
+-      memset(vn, 0, sizeof(float)*3*vn_cnt);
++void Model::alloc_items() {
++    v = new float[3 * v_cnt];
++    memset(v, 0, sizeof(float) * 3 * v_cnt);
++    if (read_normals) {
++        vn = new float[3 * vn_cnt]();
++        memset(vn, 0, sizeof(float) * 3 * vn_cnt);
+     }
+-    if (read_textures)
+-    {
+-      vt = new float[2*vt_cnt]();
+-      memset(vt, 0, sizeof(float)*2*vt_cnt);
++    if (read_textures) {
++        vt = new float[2 * vt_cnt]();
++        memset(vt, 0, sizeof(float) * 2 * vt_cnt);
+     }
+ 
+-    stride = 3 + 3*int(read_normals) + 2*int(read_textures);
+-
+-    vertData = new float[3*stride*f_cnt];
++    stride = 3 + 3 * int(read_normals) + 2 * int(read_textures);
+ }
+ 
+ 
+-void Model::parse_items(float scale)
+-{
++void Model::parse_items(float scale) {
+     QString l;
+     QStringList sl, sl2;
+ 
+     // wierzcholki...
+     int p = 0;
+-    for (int i = 0; i < source.count(); i++)
+-    {
+-        if (source[i].startsWith("v "))
+-        {
++    for (int i = 0; i < source.count(); i++) {
++        if (source[i].startsWith("v ")) {
+             l = source[i].mid(2).trimmed();
+             sl = l.split(" ");
+-            v[3*p + 0] = sl[0].toFloat()*scale;
+-            v[3*p + 1] = sl[1].toFloat()*scale;
+-            v[3*p + 2] = sl[2].toFloat()*scale;
++            v[3 * p + 0] = sl[0].toFloat() * scale;
++            v[3 * p + 1] = sl[1].toFloat() * scale;
++            v[3 * p + 2] = sl[2].toFloat() * scale;
+             p++;
+         }
+     }
+ 
+     // normalne...
+-    if (read_normals)
+-    {
++    if (read_normals) {
+         int p = 0;
+-        for (int i = 0; i < source.count(); i++)
+-        {
+-            if (source[i].startsWith("vn "))
+-            {
++        for (int i = 0; i < source.count(); i++) {
++            if (source[i].startsWith("vn ")) {
+                 l = source[i].mid(3).trimmed();
+                 sl = l.split(" ");
+-                vn[3*p + 0] = sl[0].toFloat();
+-                vn[3*p + 1] = sl[1].toFloat();
+-                vn[3*p + 2] = sl[2].toFloat();
++                vn[3 * p + 0] = sl[0].toFloat();
++                vn[3 * p + 1] = sl[1].toFloat();
++                vn[3 * p + 2] = sl[2].toFloat();
+                 p++;
+             }
+         }
+     }
+ 
+     // wspolrzedne tekstur...
+-    if (read_textures)
+-    {
++    if (read_textures) {
+         int p = 0;
+-        for (int i = 0; i < source.count(); i++)
+-        {
+-            if (source[i].startsWith("vt "))
+-            {
++        for (int i = 0; i < source.count(); i++) {
++            if (source[i].startsWith("vt ")) {
+                 l = source[i].mid(3).trimmed();
+                 sl = l.split(" ");
+-                vt[2*p + 0] = sl[0].toFloat();
+-                vt[2*p + 1] = sl[1].toFloat();
++                vt[2 * p + 0] = sl[0].toFloat();
++                vt[2 * p + 1] = sl[1].toFloat();
+                 p++;
+             }
+         }
+     }
+ 
+-   // trojkaty...
+-   p = 0;
+-   for (int i = 0; i < source.count(); i++)
+-   {
+-        if (source[i].startsWith("f "))
+-        {
++    // trojkaty...
++    p = 0;
++
++    std::vector <DataRow> data_rows;
++    std::map <DataRow, GLuint> vert_data_map;
++    std::vector <GLuint> triangle_indices;
++
++    for (int i = 0; i < source.count(); i++) {
++        if (source[i].startsWith("f ")) {
+             l = source[i].mid(2).trimmed();
+             sl = l.split(" ");
+ 
+-            for (int j = 0; j < 3; j++)
+-            {
++            for (int j = 0; j < 3; j++) {
+                 sl2 = sl[j].split("/");
+                 while (sl2.count() < 3)
+                     sl2.append("");
+ 
+                 int vi = sl2[0].toInt() - 1;
+ 
+-                vertData[stride*p + 0] = v[3*vi + 0];
+-                vertData[stride*p + 1] = v[3*vi + 1];
+-                vertData[stride*p + 2] = v[3*vi + 2];
++                DataRow data_row{};
+ 
+-                if (read_normals)
+-                {
++                data_row.vertex[0] = v[3 * vi + 0];
++                data_row.vertex[1] = v[3 * vi + 1];
++                data_row.vertex[2] = v[3 * vi + 2];
++
++                if (read_normals) {
++                    data_row.normals = true;
+                     int vni = sl2[2].toInt() - 1;
+-                    vertData[stride*p + 3] = vn[3*vni + 0];
+-                    vertData[stride*p + 4] = vn[3*vni + 1];
+-                    vertData[stride*p + 5] = vn[3*vni + 2];
++                    data_row.normal[0] = vn[3 * vni + 0];
++                    data_row.normal[1] = vn[3 * vni + 1];
++                    data_row.normal[2] = vn[3 * vni + 2];
+                 }
+ 
+-                if (read_textures)
+-                {
++                if (read_textures) {
++                    data_row.textures = true;
+                     int vti = sl2[1].toInt() - 1;
+-                    vertData[stride*p + 3*int(read_normals) + 3] = vt[2*vti + 0];
+-                    vertData[stride*p + 3*int(read_normals) + 4] = vt[2*vti + 1];
++                    data_row.texture[0] = vt[2 * vti + 0];
++                    data_row.texture[1] = vt[2 * vti + 1];
+                 }
+-                p++;
++
++                if (vert_data_map.count(data_row) == 0) {
++                    vert_data_map[data_row] = p;
++                    data_rows.push_back(data_row);
++                    triangle_indices.push_back(p);
++                    p += 1;
++                } else {
++                    triangle_indices.push_back(vert_data_map.find(data_row)->second);
++                }
++
+             }
+         }
+-   }
++    }
++    size_t i = 0;
++
++    const size_t transfer_size = stride * data_rows.size();
++    float *transfer_data = new float[transfer_size];
++    for (const auto &row: data_rows) {
++        transfer_data[i] = row.vertex[0];
++        transfer_data[i + 1] = row.vertex[1];
++        transfer_data[i + 2] = row.vertex[2];
++
++        if (row.normals) {
++            transfer_data[i + 3] = row.normal[0];
++            transfer_data[i + 4] = row.normal[1];
++            transfer_data[i + 5] = row.normal[2];
++        }
++
++        if (row.textures) {
++            transfer_data[i + 6] = row.texture[0];
++            transfer_data[i + 7] = row.texture[1];
++        }
++
++        i += stride;
++    }
+ 
+-   delete [] v;
+-   delete [] vn;
+-   delete [] vt;
++    delete[] v;
++    delete[] vn;
++    delete[] vt;
+ 
+-   qDebug() << "Ok, model wczytany.";
++    glGenBuffers(1, &VBO);
++    glBindBuffer(GL_ARRAY_BUFFER, VBO);
++    glBufferData(GL_ARRAY_BUFFER, transfer_size * sizeof(float), transfer_data, GL_STATIC_DRAW);
++
++    delete[] transfer_data;
++
++    glGenBuffers(1, &EBO);
++    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
++    glBufferData(GL_ELEMENT_ARRAY_BUFFER, triangle_indices.size() * 3 * sizeof(GLuint), triangle_indices.data(),
++                 GL_STATIC_DRAW);
++
++    qDebug() << "Ok, model wczytany.";
+ }
+ 
+-void Model::print()
+-{
++void Model::print() {
+     qDebug() << "stride:" << stride;
+-    for (int i = 0; i < f_cnt; i++)
+-    {
+-        QString s = "";
+-        for (int j = 0; j < stride*3; j++)
+-            s += (j ? ", ": "") + QString::number(vertData[i*stride + j]);
+-        qDebug() << s;
+-    }
+ }
+ 
+Index: RCR/OpenGL14/widgetopengl.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/RCR/OpenGL14/widgetopengl.cpp b/RCR/OpenGL14/widgetopengl.cpp
+--- a/RCR/OpenGL14/widgetopengl.cpp	(revision 4e70c36ef8b6198d9370d5e0474308e644db6ea5)
++++ b/RCR/OpenGL14/widgetopengl.cpp	(date 1668004840525)
+@@ -5,43 +5,40 @@
+ #include <QFile>
+ 
+ 
+-GLuint WidgetOpenGL::loadShader(GLenum type, QString fname)
+-{
+-  // wczytanie pliku
+-  QFile f(fname);
+-  if (!f.open(QFile::ReadOnly | QFile::Text))
+-      throw QString("Nie moge odczytac pliku '%1'").arg(fname);
++GLuint WidgetOpenGL::loadShader(GLenum type, QString fname) {
++    // wczytanie pliku
++    QFile f(fname);
++    if (!f.open(QFile::ReadOnly | QFile::Text))
++        throw QString("Nie moge odczytac pliku '%1'").arg(fname);
+ 
+-  QTextStream in(&f);
+-  std::string s = in.readAll().toStdString();
+-  GLchar *shader_source = (GLchar *)(s.c_str());
+-  f.close();
++    QTextStream in(&f);
++    std::string s = in.readAll().toStdString();
++    GLchar *shader_source = (GLchar * )(s.c_str());
++    f.close();
+ 
+-  // zaladowanie shadera i kompilacja
+-  GLuint shader = glCreateShader(type);
+-  glShaderSource(shader, 1, &shader_source, NULL);
+-  glCompileShader(shader);
++    // zaladowanie shadera i kompilacja
++    GLuint shader = glCreateShader(type);
++    glShaderSource(shader, 1, &shader_source, NULL);
++    glCompileShader(shader);
+ 
+-  // czy kompilacja ok?
+-  GLint success;
+-  glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+-  GLchar infoLog[512];
+-  glGetShaderInfoLog(shader, 512, NULL, infoLog);
+-  qDebug() << "Kompilacja shadera:" << fname << "\n" << infoLog;
+-  if (!success)
+-      throw QString("Blad shadera '%1': %2").arg(fname).arg(infoLog);
++    // czy kompilacja ok?
++    GLint success;
++    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
++    GLchar infoLog[512];
++    glGetShaderInfoLog(shader, 512, NULL, infoLog);
++    qDebug() << "Kompilacja shadera:" << fname << "\n" << infoLog;
++    if (!success)
++        throw QString("Blad shadera '%1': %2").arg(fname).arg(infoLog);
+ 
+-  return shader;
++    return shader;
+ }
+ 
+ 
+-void WidgetOpenGL::initializeGL()
+-{
++void WidgetOpenGL::initializeGL() {
+     // zaczynamy pesymistycznie...
+     init_ok = false;
+ 
+-    try
+-    {
++    try {
+         // jaka jest dostepna wersja OpenGL?
+         OpenGLVersionTest test;
+         QString version = test.version();
+@@ -52,10 +49,10 @@
+         initializeOpenGLFunctions();
+ 
+         // jakie mamy dostepne rozszerzenia, itp.
+-        qDebug() << (char *)glGetString(GL_EXTENSIONS);
+-        qDebug() << (char *)glGetString(GL_RENDERER);
+-        qDebug() << (char *)glGetString(GL_VERSION);
+-        qDebug() << (char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
++        qDebug() << (char *) glGetString(GL_EXTENSIONS);
++        qDebug() << (char *) glGetString(GL_RENDERER);
++        qDebug() << (char *) glGetString(GL_VERSION);
++        qDebug() << (char *) glGetString(GL_SHADING_LANGUAGE_VERSION);
+ 
+ 
+         ////////////////////////////////////////////////////////////////
+@@ -63,7 +60,7 @@
+         ////////////////////////////////////////////////////////////////
+ 
+         // ladujemy shadery
+-        GLuint vertexShader   = loadShader(GL_VERTEX_SHADER,   "vertex.glsl");
++        GLuint vertexShader = loadShader(GL_VERTEX_SHADER, "vertex.glsl");
+         GLuint fragmentShader = loadShader(GL_FRAGMENT_SHADER, "fragment.glsl");
+ 
+         // tworzymy i linkujemy program
+@@ -75,8 +72,7 @@
+         // czy kompilacja ok?
+         GLint success;
+         glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+-        if (!success)
+-        {
++        if (!success) {
+             GLchar infoLog[512];
+             glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+             throw QString("Blad linkowania: %1").arg(infoLog);
+@@ -95,16 +91,7 @@
+         model.readFile("../Modele/dragon.obj", true, false, 0.4);
+         triangles_cnt = model.getVertDataCount();
+ 
+-
+-        ////////////////////////////////////////////////////////////////
+-        // CZ 3. Vertex Buffer Object + Vertex Array Object
+-        ////////////////////////////////////////////////////////////////
+-
+-        // tworzymy VBO i przesylamy dane do serwera OpenGL
+-        GLuint VBO;
+-        glGenBuffers(1, &VBO);
+-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+-        glBufferData(GL_ARRAY_BUFFER, model.getVertDataSize(), model.getVertData(), GL_STATIC_DRAW);
++        ///////////////////////////////////////////////////////////////
+ 
+         // tworzymy VAO
+         glGenVertexArrays(1, &VAO);
+@@ -114,18 +101,22 @@
+         GLint attr = glGetAttribLocation(shaderProgram, "position");
+         if (attr < 0) throw QString("Nieprawidlowy parametr 'position'");
+ 
+-        glVertexAttribPointer(attr, 3, GL_FLOAT, GL_FALSE, model.getVertDataStride()*sizeof(GLfloat), 0);
++        glVertexAttribPointer(attr, 3, GL_FLOAT, GL_FALSE, model.getVertDataStride() * sizeof(GLfloat), 0);
+         glEnableVertexAttribArray(attr);
+ 
+         // normalne
+         attr = glGetAttribLocation(shaderProgram, "normal");
+         if (attr < 0) throw QString("Nieprawidlowy parametr 'normal'");
+ 
+-        glVertexAttribPointer(attr, 3, GL_FLOAT, GL_FALSE, model.getVertDataStride()*sizeof(GLfloat), (void *)(3*sizeof(GLfloat)));
++        glVertexAttribPointer(attr, 3, GL_FLOAT, GL_FALSE, model.getVertDataStride() * sizeof(GLfloat),
++                              (void *) (3 * sizeof(GLfloat)));
+         glEnableVertexAttribArray(attr);
+ 
+         // zapodajemy VBO
+-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
++        glBindBuffer(GL_ARRAY_BUFFER, model.getVBO());
++
++        // zapodajemy EBO
++        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.getEBO());
+ 
+         // odczepiamy VAO, aby sie nic juz nie zmienilo
+         glBindVertexArray(0);
+@@ -144,41 +135,37 @@
+ 
+         init_ok = true;
+     }
+-    catch (QString msg)
+-    {
++    catch (QString msg) {
+         qDebug() << msg;
+     }
+ }
+ 
+ 
+-QMatrix3x3 WidgetOpenGL::invertTranspose(QMatrix4x4 const &A)
+-{
++QMatrix3x3 WidgetOpenGL::invertTranspose(QMatrix4x4 const &A) {
+     QMatrix3x3 R;
+-    float det =    +A(0,0)*(A(1,1)*A(2,2)-A(2,1)*A(1,2))
+-                   -A(0,1)*(A(1,0)*A(2,2)-A(1,2)*A(2,0))
+-                   +A(0,2)*(A(1,0)*A(2,1)-A(1,1)*A(2,0));
++    float det = +A(0, 0) * (A(1, 1) * A(2, 2) - A(2, 1) * A(1, 2))
++                - A(0, 1) * (A(1, 0) * A(2, 2) - A(1, 2) * A(2, 0))
++                + A(0, 2) * (A(1, 0) * A(2, 1) - A(1, 1) * A(2, 0));
+ 
+-    float invdet = 1/det;
+-    R(0,0) =  (A(1,1)*A(2,2)-A(2,1)*A(1,2))*invdet;
+-    R(1,0) = -(A(0,1)*A(2,2)-A(0,2)*A(2,1))*invdet;
+-    R(2,0) =  (A(0,1)*A(1,2)-A(0,2)*A(1,1))*invdet;
+-    R(0,1) = -(A(1,0)*A(2,2)-A(1,2)*A(2,0))*invdet;
+-    R(1,1) =  (A(0,0)*A(2,2)-A(0,2)*A(2,0))*invdet;
+-    R(2,1) = -(A(0,0)*A(1,2)-A(1,0)*A(0,2))*invdet;
+-    R(0,2) =  (A(1,0)*A(2,1)-A(2,0)*A(1,1))*invdet;
+-    R(1,2) = -(A(0,0)*A(2,1)-A(2,0)*A(0,1))*invdet;
+-    R(2,2) =  (A(0,0)*A(1,1)-A(1,0)*A(0,1))*invdet;
++    float invdet = 1 / det;
++    R(0, 0) = (A(1, 1) * A(2, 2) - A(2, 1) * A(1, 2)) * invdet;
++    R(1, 0) = -(A(0, 1) * A(2, 2) - A(0, 2) * A(2, 1)) * invdet;
++    R(2, 0) = (A(0, 1) * A(1, 2) - A(0, 2) * A(1, 1)) * invdet;
++    R(0, 1) = -(A(1, 0) * A(2, 2) - A(1, 2) * A(2, 0)) * invdet;
++    R(1, 1) = (A(0, 0) * A(2, 2) - A(0, 2) * A(2, 0)) * invdet;
++    R(2, 1) = -(A(0, 0) * A(1, 2) - A(1, 0) * A(0, 2)) * invdet;
++    R(0, 2) = (A(1, 0) * A(2, 1) - A(2, 0) * A(1, 1)) * invdet;
++    R(1, 2) = -(A(0, 0) * A(2, 1) - A(2, 0) * A(0, 1)) * invdet;
++    R(2, 2) = (A(0, 0) * A(1, 1) - A(1, 0) * A(0, 1)) * invdet;
+ 
+     return R;
+ }
+ 
+ 
+-void WidgetOpenGL::paintGL()
+-{
++void WidgetOpenGL::paintGL() {
+     if (!init_ok) return;
+ 
+-    try
+-    {
++    try {
+         // czyscimy ekran i bufor glebokosci
+         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+ 
+@@ -195,36 +182,34 @@
+         int attr_n = glGetUniformLocation(shaderProgram, "norm_matrix");
+         if (attr < 0) throw QString("Nieprawidlowy parametr 'norm_matrix'");
+ 
+-        for (int i = 0; i < 10; i++)
+-        {
++        for (int i = 0; i < 10; i++) {
+             m_matrix.setToIdentity();
+-            m_matrix.rotate(36*i, 0, 1, 0);
++            m_matrix.rotate(36 * i, 0, 1, 0);
+             m_matrix.translate(0, 0, -2);
+             m_matrix.scale(0.5);
+ 
+-            QMatrix4x4 pvm_matrix = p_matrix*v_matrix*m_matrix;
++            QMatrix4x4 pvm_matrix = p_matrix * v_matrix * m_matrix;
+             glUniformMatrix4fv(attr, 1, GL_FALSE, pvm_matrix.data());
+ 
+             QMatrix3x3 norm_matrix = invertTranspose(m_matrix); // !!!
+             glUniformMatrix3fv(attr_n, 1, GL_FALSE, norm_matrix.data());
+ 
+-            glDrawArrays(GL_TRIANGLES, 0, 3*triangles_cnt);
++            // change drawing method
++            glDrawElements(GL_TRIANGLES, 3 * triangles_cnt, GL_UNSIGNED_INT, 0);
+         }
+ 
+         // odczepiamy VAO
+         glBindVertexArray(0);
+     }
+-    catch (QString msg)
+-    {
++    catch (QString msg) {
+         qDebug() << msg;
+     }
+ }
+ 
+ 
+-void WidgetOpenGL::resizeGL(int w, int h)
+-{
++void WidgetOpenGL::resizeGL(int w, int h) {
+     p_matrix.setToIdentity();
+-    float r = float(w)/float(h);
++    float r = float(w) / float(h);
+ 
+     // macierz perspektywy...
+     // p_matrix.ortho(-r, r, -1, 1, 0.1, 7);
+@@ -233,8 +218,7 @@
+ }
+ 
+ 
+-void WidgetOpenGL::v_transform(float rot_x, float rot_y, float rot_z, float zoom)
+-{
++void WidgetOpenGL::v_transform(float rot_x, float rot_y, float rot_z, float zoom) {
+     v_matrix.setToIdentity();
+     v_matrix.rotate(rot_x, 1, 0, 0);
+     v_matrix.rotate(rot_y, 0, 1, 0);
+Index: RCR/OpenGL14/model.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/RCR/OpenGL14/model.h b/RCR/OpenGL14/model.h
+--- a/RCR/OpenGL14/model.h	(revision 4e70c36ef8b6198d9370d5e0474308e644db6ea5)
++++ b/RCR/OpenGL14/model.h	(date 1668004792793)
+@@ -4,30 +4,63 @@
+ #include <QString>
+ #include <QStringList>
+ 
+-class Model
+-{
++#include <QOpenGLFunctions_1_0>
++#include <QOpenGLFunctions_4_5_Core>
++
++class DataRow {
+ public:
+-    Model(): v_cnt(0), vn_cnt(0), f_cnt(0), read_normals(false), read_textures(false), vertData(0), v(0), vn(0), vt(0) {}
+-    ~Model() { delete [] vertData; }
++    bool normals = false;
++    bool textures = false;
++
++    std::array<float, 3> vertex{};
++    std::array<float, 2> texture{};
++    std::array<float, 3> normal{};
++
++    friend bool operator==(const DataRow &lhs, const DataRow &rhs) {
++        return lhs.vertex == rhs.vertex && lhs.texture == rhs.texture && lhs.normal == rhs.normal;
++    }
++
++    friend bool operator<(const DataRow &lhs, const DataRow &rhs) {
++        return lhs.vertex < rhs.vertex || lhs.texture < rhs.texture || lhs.normal < rhs.normal;
++    }
++};
++
++class Model : public QOpenGLFunctions_4_5_Core {
++public:
++    Model() : v_cnt(0), vn_cnt(0), f_cnt(0), read_normals(false), read_textures(false), v(0), vn(0), vt(0) {
++        initializeOpenGLFunctions();
++    }
++
++    ~Model() = default;
+ 
+ 
+     void readFile(QString fname, bool readNormals, bool readTextures, float scale);
+ 
+-    float *getVertData() { return vertData; }
+     int getVertDataStride() { return stride; }
++
+     int getVertDataCount() { return f_cnt; }
+-    int getVertDataSize() { return 3*f_cnt*stride*sizeof(float); }
++
++    int getVertDataSize() { return 3 * f_cnt * stride * sizeof(float); }
+ 
++    GLuint getVBO() const;
++
++    GLuint getEBO() const;
++
+ private:
+     QStringList source;
+     int v_cnt, vn_cnt, vt_cnt, f_cnt, stride;
+     bool read_normals, read_textures;
+-    float *vertData;
+     float *v, *vn, *vt;
+ 
++    GLuint VBO;
++    GLuint EBO;
++
+     void count_items();
++
+     void alloc_items();
++
+     void parse_items(float scale);
++
+     void print();
+ };
+ 
