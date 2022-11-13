@@ -26,6 +26,6 @@ sport_car,325,1100,2,120,2,4,18,Ferrari,petrol,F40
 motorcycle,168,304,0,18.9,2,2,8.7,harley davidson,potrol,fat boy
 suv,213,1800,5,60,5,4,15,range rover,desel,evoque
 suv,237,1460,5,51,5,4,14,bmw,desel,x2
-lorry,90,7430,2,600,2,6,37,Renault ,desel,Magnum
-lorry,100,6500,2,1215,2,4,24.7,DAF ,desel,XF 106
+lorry,90,7430,2,600,2,6,37,Renault,desel,Magnum
+lorry,100,6500,2,1215,2,4,24.7,DAF,desel,XF 106
 sedan,220,1551,4,66,5,4,5.8,Volkswagen,desel,Passat VIII
