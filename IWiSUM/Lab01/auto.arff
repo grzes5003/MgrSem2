@@ -7,7 +7,7 @@
 @attribute max_passangers numeric
 @attribute num_of_tires numeric
 @attribute avg_fuel_coms numeric
-@attribute make {'porsche', 'jaguar', 'bmw', 'suzuki', 'kawasaki', 'honda', 'Bugatti', 'maclaren', 'mercedes', 'skoda', 'Mitsubishi', 'volvo', 'scania', 'Daewoo', 'Fiat', 'Toyota', 'Man', 'Ferrari', 'harley davidson', 'range rover', 'Renault', 'DAF', 'Volkswagen'}
+@attribute make {'porsche', 'jaguar', 'Bmw', 'suzuki', 'kawasaki', 'honda', 'Bugatti', 'maclaren', 'Mercedes', 'skoda', 'Mitsubishi', 'volvo', 'scania', 'Daewoo', 'Fiat', 'Toyota', 'Man', 'Ferrari', 'harley davidson', 'range rover', 'Renault', 'DAF', 'Volkswagen'}
 @attribute fuel_type {petrol,diesel}
 @attribute type {sport_car,motorcycle,suv,lorry,sedan}
 
