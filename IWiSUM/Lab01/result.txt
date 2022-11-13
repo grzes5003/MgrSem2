@@ -1,0 +1,95 @@
+Tester:     weka.experiment.PairedCorrectedTTester
+Analysing:  Percent_correct
+Datasets:   1
+Resultsets: 5
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       13/11/2022, 15:54
+
+
+Dataset                   (1) trees.BF | (2) bayes (3) bayes (4) rule (5) trees
+-------------------------------------------------------------------------------
+'OTOMOTO-weka.filters.uns(100)   88.67 |   88.00     89.00     0.00 *   88.67
+-------------------------------------------------------------------------------
+                               (v/ /*) |   (0/1/0)   (0/1/0)  (0/0/1)   (0/1/0)
+
+
+Key:
+(1) trees.BFTree '-S 1 -M 2 -N 5 -C 1.0 -P POSTPRUNED' -7035607375962528217
+(2) bayes.NaiveBayes '' 5995231201785697655
+(3) bayes.BayesNet '-D -Q bayes.net.search.local.K2 -- -P 1 -S BAYES -E bayes.net.estimate.SimpleEstimator -- -A 0.5' 746037443258775954
+(4) rules.ZeroR '' 48055541465867954
+(5) trees.J48 '-C 0.25 -M 2' -217733168393644444
+
+====================================================================
+Tester:     weka.experiment.PairedCorrectedTTester
+Analysing:  Percent_correct
+Datasets:   1
+Resultsets: 5
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       13/11/2022, 15:57
+
+
+Dataset                   (1) trees.BFTree '- | (2) bayes.NaiveB (3) bayes.BayesN (4) rules.Zero (5) trees.J48 '-
+-----------------------------------------------------------------------------------------------------------------
+'OTOMOTO-weka.filters.uns(100)   88.67(19.66) |   88.00(19.83)     89.00(15.75)     0.00(0.00) *   88.67(18.48)
+-----------------------------------------------------------------------------------------------------------------
+                                      (v/ /*) |          (0/1/0)          (0/1/0)        (0/0/1)          (0/1/0)
+
+
+Key:
+(1) trees.BFTree '-S 1 -M 2 -N 5 -C 1.0 -P POSTPRUNED' -7035607375962528217
+(2) bayes.NaiveBayes '' 5995231201785697655
+(3) bayes.BayesNet '-D -Q bayes.net.search.local.K2 -- -P 1 -S BAYES -E bayes.net.estimate.SimpleEstimator -- -A 0.5' 746037443258775954
+(4) rules.ZeroR '' 48055541465867954
+(5) trees.J48 '-C 0.25 -M 2' -217733168393644444
+
+======================
+Tester:     weka.experiment.PairedCorrectedTTester
+Analysing:  KB_information
+Datasets:   1
+Resultsets: 5
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       13/11/2022, 16:04
+
+
+Dataset                   (1) trees.BFTree  | (2) bayes.Naiv (3) bayes.Baye (4) rules.Zero (5) trees.J48
+---------------------------------------------------------------------------------------------------------
+'OTOMOTO-weka.filters.uns(100)   6.32(1.60) |   6.27(1.60)     6.29(1.15)     0.00(0.00) *   6.33(1.49)
+---------------------------------------------------------------------------------------------------------
+                                    (v/ /*) |        (0/1/0)        (0/1/0)        (0/0/1)        (0/1/0)
+
+
+Key:
+(1) trees.BFTree '-S 1 -M 2 -N 5 -C 1.0 -P POSTPRUNED' -7035607375962528217
+(2) bayes.NaiveBayes '' 5995231201785697655
+(3) bayes.BayesNet '-D -Q bayes.net.search.local.K2 -- -P 1 -S BAYES -E bayes.net.estimate.SimpleEstimator -- -A 0.5' 746037443258775954
+(4) rules.ZeroR '' 48055541465867954
+(5) trees.J48 '-C 0.25 -M 2' -217733168393644444
+
+
+============================
+Tester:     weka.experiment.PairedCorrectedTTester
+Analysing:  Percent_correct
+Datasets:   1
+Resultsets: 5
+Confidence: 0.05 (two tailed)
+Sorted by:  -
+Date:       13/11/2022, 16:45
+
+
+Dataset                   (1) trees.BFTree ' | (2) bayes.Naive (3) bayes.BayesN (4) rules.ZeroR (5) trees.J48 '-
+----------------------------------------------------------------------------------------------------------------
+'OTOMOTO-weka.filters.uns (10)   96.33(7.77) |   91.00(9.56)     93.33(11.65)     18.00(1.72) *   88.00(11.46)
+----------------------------------------------------------------------------------------------------------------
+                                     (v/ /*) |         (0/1/0)          (0/1/0)         (0/0/1)          (0/1/0)
+
+
+Key:
+(1) trees.BFTree '-S 1 -M 2 -N 5 -C 1.0 -P POSTPRUNED' -7035607375962528217
+(2) bayes.NaiveBayes '' 5995231201785697655
+(3) bayes.BayesNet '-D -Q bayes.net.search.local.K2 -- -P 1 -S BAYES -E bayes.net.estimate.SimpleEstimator -- -A 0.5' 746037443258775954
+(4) rules.ZeroR '' 48055541465867954
+(5) trees.J48 '-C 0.25 -M 2' -217733168393644444
