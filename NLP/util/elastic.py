@@ -88,9 +88,10 @@ def send_data(_client: Elasticsearch, words: [str], name: str = 'sample'):
 
 
 def load_file_to_doc(path: str, name: str = 'sample'):
-    if not client.indices.exists(index=name):
-        client.indices.create(index=name)
+    if client.indices.exists(index=name):
+        return
 
+    client.indices.create(index=name)
     with open(path, encoding='utf-8') as f:
         lines = f.readlines()
     print(f"{len(lines)=}")

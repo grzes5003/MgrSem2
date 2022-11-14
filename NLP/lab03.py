@@ -103,7 +103,7 @@ def exc_08_09_10(df: pd.DataFrame):
     return df_result, df_top, df_rnd
 
 
-def exc_10(df_all: pd.DataFrame, df_nondict: pd.DataFrame, df_top: pd.DataFrame, df_rnd: pd.DataFrame):
+def exc_11(df_all: pd.DataFrame, df_nondict: pd.DataFrame, df_top: pd.DataFrame, df_rnd: pd.DataFrame):
     """
     Use Levenshtein distance and the frequency list, to determine the most probable correction
     of the words from lists defined in points 8 and 9. (Note: You don't have to apply the
@@ -117,8 +117,9 @@ def exc_10(df_all: pd.DataFrame, df_nondict: pd.DataFrame, df_top: pd.DataFrame,
     autocorr_rnd = []
     tic = time.perf_counter()
     for word_top, word_rnd in zip(df_top['word'], df_rnd['word']):
-        autocorr_top.append(min([(Levenshtein.distance(word_top, dict_word), word_top, dict_word) for dict_word in df_dict['word']],
-                            key=lambda item: item[0]))
+        autocorr_top.append(
+            min([(Levenshtein.distance(word_top, dict_word), word_top, dict_word) for dict_word in df_dict['word']],
+                key=lambda item: item[0]))
         autocorr_rnd.append(
             min([(Levenshtein.distance(word_rnd, dict_word), word_rnd, dict_word) for dict_word in df_dict['word']],
                 key=lambda item: item[0]))
@@ -132,6 +133,63 @@ def exc_10(df_all: pd.DataFrame, df_nondict: pd.DataFrame, df_top: pd.DataFrame,
     print(df_sug_rng)
 
 
+def exc13(df_top: pd.DataFrame, df_rnd: pd.DataFrame):
+    """
+    Load SGJP dictionary (Słownik SGJP dane tekstowe) to ElasticSearch (one document for each form) and use fuzzy
+    matching to obtain the possible corrections of the 30 words with 5 occurrences that do not belong to the dictionary.
+    """
+    autocorr_top = []
+    autocorr_rnd = []
+
+    tic = time.perf_counter()
+    for word_top, word_rnd in zip(df_top['word'], df_rnd['word']):
+        resp_top = client.search(
+            index="sgjp",
+            body={
+                "query": {
+                    "fuzzy": {
+                        "word": {
+                            "value": word_top,
+                            "fuzziness": 2
+                        }
+                    }
+                }
+            })
+        resp_rnd = client.search(
+            index="sgjp",
+            body={
+                "query": {
+                    "fuzzy": {
+                        "word": {
+                            "value": word_rnd,
+                            "fuzziness": 2
+                        }
+                    }
+                }
+            })
+        if len(resp_top['hits']['hits']) > 0:
+            dict_word = resp_top['hits']['hits'][0]['_source']['word']
+            autocorr_top.append((word_top, dict_word))
+        else:
+            autocorr_top.append((word_top, None))
+        if len(resp_rnd['hits']['hits']) > 0:
+            dict_word = resp_rnd['hits']['hits'][0]['_source']['word']
+            autocorr_rnd.append((word_top, dict_word))
+        else:
+            autocorr_rnd.append((word_top, None))
+    toc = time.perf_counter()
+    print(f"time={toc - tic:0.4f}")
+
+    df_sug_top = pd.DataFrame(autocorr_top, columns=['org', 'sug'])
+    df_sug_rng = pd.DataFrame(autocorr_rnd, columns=['org', 'sug'])
+
+    print(df_sug_top)
+    print(df_sug_rng)
+
+    df_sug_top.to_csv('results/lab03/lab03_es_sug_top.csv', index=False)
+    df_sug_rng.to_csv('results/lab03/lab03_es_sug_rng.csv', index=False)
+
+
 if __name__ == '__main__':
     path = 'C:/Users/xgg/PycharmProjects/NLP/data/ustawy'
     results_filepath = "results/lab03/lab03_freq.csv"
@@ -140,16 +198,17 @@ if __name__ == '__main__':
     if not results_file.is_file():
         exc_05(path)
 
-    # df = pd.read_csv(results_filepath)
+    df = pd.read_csv(results_filepath)
     # exc_07(df)
 
-    # df_nondict, df_top, df_rnd = exc_08_09_10(df)
+    df_nondict, df_top, df_rnd = exc_08_09_10(df)
 
-    # exc_10(df, df_nondict, df_top, df_rnd)
+    # exc_11(df, df_nondict, df_top, df_rnd)
 
     setup_es()
-    load_docs(path)
-    load_file_to_doc('data/sgjp/sgjp-20221030.tab', name='sgjp')
+    # load_docs(path)
+    # exc12
+    # load_file_to_doc('data/sgjp/sgjp-20221030.tab', name='sgjp')
+    exc13(df_top, df_rnd)
 
     print('done')
-

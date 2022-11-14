@@ -147,3 +147,70 @@ pkt,35
 27     1            instrumen   instrument
 28     1                   ym           Mm
 29     1                  URT          ART
+
+
+ELASTIC_SEARCH
+time=0.7522
+              org              sug
+0             poz              Koz
+1            późn            Późna
+2             str              Otr
+3             GMO             None
+4             SWW             None
+5      operacyjno       operacyjko
+6             SKW             None
+7              zm            AM-em
+8              ex               EP
+9             IKE             None
+10          rolno            Dolno
+11     techniczno       techniczko
+12     remediacji       repudiacji
+13          rozdz            Drozd
+14            URE             None
+15            UKE             None
+16            itp              ATP
+17             kN               KC
+18   charytatywno   charytatywność
+19      sanitarno        sanitarko
+20             CN               Al
+21          PKWiU             None
+22            UDT             None
+23      społeczno        spółeczno
+24             np               AP
+25          BSWSG             None
+26           BSWP             None
+27      Społeczno        spółeczno
+28    Biobójczych             None
+29  organizacyjno  organizacyjność
+              org             sug
+0             poz           agape
+1            późn   inspekcyjność
+2             str          AM-ami
+3             GMO            None
+4             SWW      instrument
+5      operacyjno            None
+6             SKW         chatyna
+7              zm             Owc
+8              ex  informacyjność
+9             IKE  funkcjonalność
+10          rolno        organicy
+11     techniczno            None
+12     remediacji           lista
+13          rozdz            None
+14            URE    geodezyjność
+15            UKE           Arian
+16            itp        Ciasnego
+17             kN            None
+18   charytatywno            None
+19      sanitarno          Czoika
+20             CN          Sposób
+21          PKWiU    pracobiorców
+22            UDT             Cym
+23      społeczno            pakt
+24             np          Wapnic
+25          BSWSG        heptanom
+26           BSWP    edukacyjność
+27      Społeczno            None
+28    Biobójczych          teryno
+29  organizacyjno            None
+done
