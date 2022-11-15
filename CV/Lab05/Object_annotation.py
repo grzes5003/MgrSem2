@@ -27,11 +27,11 @@ def app():
 
     img.image = 'img.png'
 
-    drag = dmr.Drag()
+    drag = dmr.Drag(img)
 
     cv2.namedWindow(rectI.wname)
     cv2.imshow(rectI.wname, img.image)
-    cv2.setMouseCallback(rectI.wname, lambda a, b, c, d, e: drag.dragrect(a, b, c, d), rectI)
+    cv2.setMouseCallback(rectI.wname, drag.dragrect, rectI)
 
     while True:
         # cv2.imshow(w_name, np.concatenate((rectI.image, img.image), axis=0))

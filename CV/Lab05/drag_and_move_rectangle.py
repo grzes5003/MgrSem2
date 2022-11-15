@@ -1,5 +1,7 @@
 import cv2
 
+from img import Img
+
 
 class Rect:
     x = None
@@ -50,10 +52,12 @@ class DragRectangle:
 
 
 class Drag:
-    def __init__(self):
+    def __init__(self, bck: Img):
         self.dragObj = None
+        self.bck = bck
 
-    def dragrect(self, event, x, y, flags):
+    def dragrect(self, event, x, y, flags, _dragObj):
+        self.dragObj = _dragObj
         if x < self.dragObj.keepWithin.x:
             x = self.dragObj.keepWithin.x
         if y < self.dragObj.keepWithin.y:
@@ -192,7 +196,7 @@ class Drag:
             self.dragObj.outRect.x = eX
         elif self.dragObj.RM:
             self.dragObj.outRect.w = eX - self.dragObj.outRect.x
-        self.clearCanvasNDraw()
+        self.clear_canvas_n_draw()
 
     def mouseUp(self):
         self.dragObj.drag = False
@@ -201,7 +205,7 @@ class Drag:
         if self.dragObj.outRect.w == 0 or self.dragObj.outRect.h == 0:
             self.dragObj.active = False
 
-        self.clearCanvasNDraw()
+        self.clear_canvas_n_draw()
 
     def disableResizeButtons(self):
         self.dragObj.TL = self.dragObj.TM = self.dragObj.TR = False
@@ -220,16 +224,17 @@ class Drag:
             self.dragObj.outRect.y = self.dragObj.outRect.y + self.dragObj.outRect.h
             self.dragObj.outRect.h = -self.dragObj.outRect.h
 
-    def clearCanvasNDraw(self):
+    def clear_canvas_n_draw(self):
         tmp = self.dragObj.image.copy()
         cv2.rectangle(tmp, (self.dragObj.outRect.x, self.dragObj.outRect.y),
                       (self.dragObj.outRect.x + self.dragObj.outRect.w,
                        self.dragObj.outRect.y + self.dragObj.outRect.h), (0, 255, 0), 2)
-        self.drawSelectMarkers(tmp)
-        cv2.imshow(self.dragObj.wname, tmp)
+        self.draw_select_markers(tmp)
+        dst = cv2.addWeighted(tmp, 1, self.bck.image, .7, 0)
+        cv2.imshow(self.dragObj.wname, dst)
         cv2.waitKey()
 
-    def drawSelectMarkers(self, image):
+    def draw_select_markers(self, image):
         """
         Draw markers on the dragged rectangle
         """
