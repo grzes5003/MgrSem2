@@ -57,16 +57,17 @@ class Drag:
         self.bck = bck
 
     def dragrect(self, event, x, y, flags, _dragObj):
-        self.dragObj = _dragObj
-        if x < self.dragObj.keepWithin.x:
-            x = self.dragObj.keepWithin.x
-        if y < self.dragObj.keepWithin.y:
-            y = self.dragObj.keepWithin.y
-        if x > (self.dragObj.keepWithin.x + self.dragObj.keepWithin.w - 1):
-            x = self.dragObj.keepWithin.x + self.dragObj.keepWithin.w - 1
-        if y > (self.dragObj.keepWithin.y + self.dragObj.keepWithin.h - 1):
-            y = self.dragObj.keepWithin.y + self.dragObj.keepWithin.h - 1
+        print(f"drag.. {event}")
+        if x < _dragObj.keepWithin.x:
+            x = _dragObj.keepWithin.x
+        if y < _dragObj.keepWithin.y:
+            y = _dragObj.keepWithin.y
+        if x > (_dragObj.keepWithin.x + _dragObj.keepWithin.w - 1):
+            x = _dragObj.keepWithin.x + _dragObj.keepWithin.w - 1
+        if y > (_dragObj.keepWithin.y + _dragObj.keepWithin.h - 1):
+            y = _dragObj.keepWithin.y + _dragObj.keepWithin.h - 1
 
+        self.dragObj = _dragObj
         if event == cv2.EVENT_LBUTTONDOWN:
             self.mouseDown(x, y)
         if event == cv2.EVENT_LBUTTONUP:
