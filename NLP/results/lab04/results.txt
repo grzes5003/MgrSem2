@@ -1,0 +1,30 @@
+
+
+exc05
+                      a                    b  freq  freq_a  freq_b  freq_pmi
+481463       медицинска               сестра     1       1       1   0.53398
+455159      zauważonych  niebezpieczeństwach     1       1       1   0.53398
+87307       implantacji          stymulatora     1       1       1   0.53398
+274202      przejściami            rzecznymi     1       1       1   0.53398
+296087        reakcjami     psychofizycznymi     1       1       1   0.53398
+460257       zdobionych               haftem     1       1       1   0.53398
+412304     wydawnictwie       promulgacyjnym     1       1       1   0.53398
+273966  przejrzystością          ułatwiającą     1       1       1   0.53398
+255770         pozyskać          sortymentów     1       1       1   0.53398
+412518       wydobywane             lokalnie     1       1       1   0.53398
+
+
+                 a               b  freq  freq_a  freq_b  freq_pmi
+453946  zaszkodzić         wynikom     5       5       5 -1.787948
+331530     stajnią       wyścigową     5       5       5 -1.787948
+312258    ręcznego        miotacza     5       5       5 -1.787948
+155112       młyny          kulowe     5       5       5 -1.787948
+155111      młynki        młotkowe     5       5       5 -1.787948
+181182   obcowania       płciowego     5       5       5 -1.787948
+110680    klęskami     żywiołowymi     5       5       5 -1.787948
+476059       środa            wlkp     5       5       5 -1.787948
+71651     grzegorz        schetyna     5       5       5 -1.787948
+478459    świeckie  przygotowujące     5       5       5 -1.787948
+
+Process finished with exit code 0
+

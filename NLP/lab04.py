@@ -9,6 +9,7 @@ from typing import Tuple, Callable, List
 import numpy as np
 import pandas as pd
 from spacy.lang.pl import Polish
+import xml.etree.ElementTree as et
 
 from util import read_files_list
 
@@ -82,13 +83,6 @@ def exc04(df_words: pd.DataFrame, df_bigrams: pd.DataFrame):
     all_words = df_words['freq'].sum()
     all_pairs = df_bigrams['freq'].sum()
 
-    def pmi(row: pd.Series):
-        a, b, pair = row['a'], row['b'], row['freq']
-        freq_a, freq_b = df_words[df_words['word'] == a]['freq'].iloc[0], df_words[df_words['word'] == b]['freq'].iloc[
-            0]
-
-        return [a, b, math.log2((pair / all_pairs) / ((freq_a * freq_b) / all_words))]
-
     df_merged = df_bigrams.merge(df_words, how='left', left_on='a', right_on='word')
     df_merged = df_merged.merge(df_words, how='left', left_on='b', right_on='word')
     df_merged = df_merged.rename(columns={'freq_x': 'freq', 'freq_y': 'freq_a', 'freq': 'freq_b'})
@@ -98,17 +92,51 @@ def exc04(df_words: pd.DataFrame, df_bigrams: pd.DataFrame):
         (df_merged['freq'] / all_pairs) / ((df_merged['freq_a'] * df_merged['freq_b']) / all_words))
 
     df_merged.to_csv('lab04_pmi_freq.csv', index=False)
-    ...
+
+
+def exc05_06(df_pmi: pd.DataFrame):
+    """
+    Sort the word pairs according to that measure in the descending order and determine top 10 entries.
+    """
+    print(df_pmi.sort_values(by=['freq_pmi'], ascending=False).head(10))
+
+    """
+    Filter bigrams with number of occurrences lower than 5. 
+    Determine top 10 entries for the remaining dataset (>=5 occurrences)
+    """
+    print(df_pmi[df_pmi['freq'] >= 5].sort_values(by=['freq_pmi'], ascending=False).head(10))
+
+
+def exc10(path: str):
+    """
+    Compute the same statistics as for the non-lemmatized words
+    (i.e. PMI) and print top-10 entries with at least 5 occurrences.
+    """
+
+    tree = et.parse(source=path)
+    root = tree.getroot()
+
+    tokens = [(tok.find("orth").text, tok.find("lex").find("base").text, tok.find("lex").find("ctag").text)
+              for tok in root.findall(".//tok")]
+
+    df_parsed = pd.DataFrame(tokens, columns=['orth', 'base', 'ctag'])
+    df_parsed.to_csv('lab04_morf_parsed.csv', index=False)
 
 
 if __name__ == '__main__':
     path = 'C:/Users/xgg/PycharmProjects/NLP/data/ustawy'
     path_df_bigrams = 'results/lab04/lab04_raw_bigrams.csv'
     path_df_words = 'results/lab04/lab04_words_freq.csv'
+    path_df_pmi = 'results/lab04/lab04_pmi_freq.csv'
 
     # exc01_02_03(path)
-    df_words = pd.read_csv(path_df_words)
-    df_bigrams = pd.read_csv(path_df_bigrams)
+    # df_words = pd.read_csv(path_df_words)
+    # df_bigrams = pd.read_csv(path_df_bigrams)
 
-    exc04(df_words, df_bigrams)
+    # exc04(df_words, df_bigrams)
+
+    # df_pmi = pd.read_csv(path_df_pmi)
+    # exc05_06(df_pmi)
+
+    exc10('results/lab04/lab04_words_corp.xml')
     ...
