@@ -1,0 +1,216 @@
+# example freq from two docs
+
+|,1616
+\n,966
+   ,485
+w,211
+        ,170
+           ,168
+i,147
+\n,122
+ ,118
+ust.,117
+                                          ,114
+  ,113
+z,102
+                                       ,86
+się,64
+art.,63
+do,62
+w,56
+towarów,43
+1,42
+o,40
+pkt,35
+2,35
+
+
+        word   freq
+154       do  56727
+233       na  49031
+215      lub  45325
+286      się  43963
+261     oraz  33082
+243      nie  22252
+277    przez  20534
+210  których  17891
+253       od  15955
+192     jest  13009
+262       po  12945
+211   którym  11757
+226     może  11368
+330       za  10238
+123     albo   8554
+166      ich   8176
+152      dla   7649
+208   której   7460
+196   jeżeli   7294
+251      niż   6408
+189     jego   6303
+133      być   6013
+311      tym   6001
+291       są   5767
+333       ze   5433
+298    także   5313
+309     tych   5006
+172   innych   4527
+274    przed   4482
+341       że   4449
+43    Jeżeli   4194
+289   sposób   4112
+206    które   4015
+301     tego   3903
+225     mogą   3849
+190      jej   3688
+306       to   3579
+146       co   3464
+14        Do   3424
+278     przy   3131
+281     roku   3122
+280    razie   3058
+209    który   3019
+302      tej   2773
+161      gdy   2713
+282  również   2477
+170     inne   2369
+129      bez   2324
+207  którego   2117
+216       ma   1960
+
+# 11)
+[(1, 'poz', 'po'), (2, 'późn', 'paź'), (1, 'str', 'st'), (1, 'GMO', 'IMO'), (2, 'SWW', 'EWG'), (1, 'operacyjno', 'operacyjna'), (2, 'SKW', 'DK'), (1, 'zm', 'Mm'), (1, 'ex', 'ej'), (2, 'IKE', 'BSE'), (1, 'rolno', 'Wolno'), (1, 'techniczno', 'techniczna'), (2, 'remediacji', 'mediacji'), (2, 'rozdz', 'rodu'), (1, 'URE', 'UE'), (1, 'UKE', 'UE'), (1, 'itp', 'ity'), (1, 'kN', 'EN'), (1, 'charytatywno', 'charytatywne'), (1, 'sanitarno', 'sanitarna'), (1, 'CN', 'CE'), (3, 'PKWiU', 'KU'), (1, 'UDT', 'DDT'), (1, 'społeczno', 'społeczna'), (1, 'np', 'Lp'), (3, 'BSWSG', 'BSE'), (2, 'BSWP', 'BSE'), (1, 'Społeczno', 'Społeczna'), (4, 'Biobójczych', 'dowódczych'), (1, 'organizacyjno', 'organizacyjna')]
+
+[(1, 'instrumen', 'instrument'), (3, 'Betezda', 'Betel'), (2, 'teryto', 'tery'), (2, 'RCI', 'AC'), (5, 'Contagious', 'Notariusz'), (1, 'ym', 'Mm'), (1, 'ośc', 'oś'), (1, 'Agave', 'Agape'), (4, 'próbobiorców', 'pracobiorcą'), (7, 'EudraVigilance', 'udzielane'), (1, 'wapnio', 'wapni'), (1, 'wodno', 'wodna'), (1, 'tów', 'nów'), (1, 'jed', 'je'), (1, 'mieszkalno', 'mieszkalne'), (2, 'heptanol', 'Metanol'), (1, 'najmnie', 'najmie'), (4, 'chelatującym', 'chorującym'), (1, 'funkcjonalno', 'funkcjonalne'), (2, 'JWH', 'EWG'), (1, 'tzn', 'tan'), (3, 'KPWiG', 'EWG'), (1, 'GJ', 'GR'), (2, 'remediację', 'mediację'), (2, 'organicz', 'organach'), (3, 'denitracyjne', 'bonitacyjne'), (1, 'inspekcyjno', 'inspekcyjna'), (1, 'szcze', 'szcza'), (1, 'RR', 'AR'), (1, 'informacyjno', 'informacyjna')]
+
+
+
+    dist            org            sug
+0      1            poz             po
+1      2           późn            paź
+2      1            str             st
+3      1            GMO            IMO
+4      2            SWW            EWG
+5      1     operacyjno     operacyjna
+6      2            SKW             DK
+7      1             zm             Mm
+8      1             ex             ej
+9      2            IKE            BSE
+10     1          rolno          Wolno
+11     1     techniczno     techniczna
+12     2     remediacji       mediacji
+13     2          rozdz           rodu
+14     1            URE             UE
+15     1            UKE             UE
+16     1            itp            ity
+17     1             kN             EN
+18     1   charytatywno   charytatywne
+19     1      sanitarno      sanitarna
+20     1             CN             CE
+21     3          PKWiU             KU
+22     1            UDT            DDT
+23     1      społeczno      społeczna
+24     1             np             Lp
+25     3          BSWSG            BSE
+26     2           BSWP            BSE
+27     1      Społeczno      Społeczna
+28     4    Biobójczych     dowódczych
+29     1  organizacyjno  organizacyjna
+
+    dist                  org          sug
+0      2             organicz     organach
+1      1             rialnego     realnego
+2      4             Schetyna        Ocena
+3      3                KPWiG          EWG
+4      1          inspekcyjno  inspekcyjna
+5      7       EudraVigilance    udzielane
+6      1                vista        Lista
+7      2             heptanol      Metanol
+8      1              najmnie       najmie
+9      1                   GJ           GR
+10     4             Shigella       Diesla
+11     1           mieszkalno   mieszkalne
+12     1           edukacyjno   edukacyjna
+13     8      difenylopropylo     difenyle
+14     1                wodno        wodna
+15     1                  jed           je
+16     2               teryto         tery
+17     2                 Wlkp         Walk
+18     1               cznika      ocznika
+19     1                   RR           AR
+20     9  metylofenetyloamina  metyloamino
+21     1                 ppkt          pkt
+22     1               wapnio        wapni
+23     1               zawart      zawarta
+24     1                Agave        Agape
+25     1                  ami           am
+26     1                szcze        szcza
+27     1            instrumen   instrument
+28     1                   ym           Mm
+29     1                  URT          ART
+
+
+ELASTIC_SEARCH
+time=0.7522
+              org              sug
+0             poz              Koz
+1            późn            Późna
+2             str              Otr
+3             GMO             None
+4             SWW             None
+5      operacyjno       operacyjko
+6             SKW             None
+7              zm            AM-em
+8              ex               EP
+9             IKE             None
+10          rolno            Dolno
+11     techniczno       techniczko
+12     remediacji       repudiacji
+13          rozdz            Drozd
+14            URE             None
+15            UKE             None
+16            itp              ATP
+17             kN               KC
+18   charytatywno   charytatywność
+19      sanitarno        sanitarko
+20             CN               Al
+21          PKWiU             None
+22            UDT             None
+23      społeczno        spółeczno
+24             np               AP
+25          BSWSG             None
+26           BSWP             None
+27      Społeczno        spółeczno
+28    Biobójczych             None
+29  organizacyjno  organizacyjność
+              org             sug
+0             poz           agape
+1            późn   inspekcyjność
+2             str          AM-ami
+3             GMO            None
+4             SWW      instrument
+5      operacyjno            None
+6             SKW         chatyna
+7              zm             Owc
+8              ex  informacyjność
+9             IKE  funkcjonalność
+10          rolno        organicy
+11     techniczno            None
+12     remediacji           lista
+13          rozdz            None
+14            URE    geodezyjność
+15            UKE           Arian
+16            itp        Ciasnego
+17             kN            None
+18   charytatywno            None
+19      sanitarno          Czoika
+20             CN          Sposób
+21          PKWiU    pracobiorców
+22            UDT             Cym
+23      społeczno            pakt
+24             np          Wapnic
+25          BSWSG        heptanom
+26           BSWP    edukacyjność
+27      Społeczno            None
+28    Biobójczych          teryno
+29  organizacyjno            None
+done
