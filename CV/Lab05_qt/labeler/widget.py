@@ -1,13 +1,10 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
-from PySide6 import QtWidgets
-from PySide6.QtGui import QPixmap, QAction
-from PySide6.QtWidgets import QApplication, QWidget, QLabel, QGridLayout, QFileDialog
+from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QApplication, QWidget, QLabel, QFileDialog
 
 from image_view import ImageView
-#from PyQt5 import QLabel, QPixmap
-#from PyQt5.QtGui import QPixmap
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -24,40 +21,18 @@ class Widget(QWidget):
 
         self.ui.newButton.clicked.connect(self.load_image)
 
-#        newAct = QAction('New', self)
-#        self.numpyPicture = QPixmap('./img.png')
-#        newAct.triggered.connect(self.new_pic)
-#        toolbar = self.addToolBar('Exit')
-#        toolbar.addAction(newAct)
-#        self.setGeometry(300, 300, 350, 250)
-
-#        self.im = QPixmap('./img.png')
-#        self.label = QLabel()
-#        self.label.setPixmap(self.im)
-
-#        self.grid = QGridLayout()
-#        self.grid.addWidget(self.label, 1, 1)
-#        self.setLayout(self.grid)
-
-#        self.setGeometry(50, 50, 320, 200)
-#        self.setWindowTitle("PyQT show image")
-#        self.show()
-
     def show_img(self):
         self.ui.frame.set
         label = QLabel()
         pixmap = QPixmap('img.png')
         label.setPixmap(pixmap)
 
-    def new_pic(self):
-        ...
-
     def load_image(self):
         image_path, _ = QFileDialog.getOpenFileName(self, "OpenFile", "", "")
         if image_path:
             print(image_path)
             self.pixmap = QPixmap(image_path)
-            self.newImage = ImageView(self.pixmap)
+            self.newImage = ImageView(self.pixmap, image_path)
             # self.image_lbl.setPixmap(QPixmap(pixmap))
 
 
