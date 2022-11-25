@@ -19,3 +19,4 @@ elasticsearch
 spacy==3.4
 morfeusz2
 levenshtein
+lxml

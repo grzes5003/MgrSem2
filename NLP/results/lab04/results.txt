@@ -1,0 +1,44 @@
+
+
+exc05
+                      a                    b  freq  freq_a  freq_b  freq_pmi
+481463       медицинска               сестра     1       1       1   0.53398
+455159      zauważonych  niebezpieczeństwach     1       1       1   0.53398
+87307       implantacji          stymulatora     1       1       1   0.53398
+274202      przejściami            rzecznymi     1       1       1   0.53398
+296087        reakcjami     psychofizycznymi     1       1       1   0.53398
+460257       zdobionych               haftem     1       1       1   0.53398
+412304     wydawnictwie       promulgacyjnym     1       1       1   0.53398
+273966  przejrzystością          ułatwiającą     1       1       1   0.53398
+255770         pozyskać          sortymentów     1       1       1   0.53398
+412518       wydobywane             lokalnie     1       1       1   0.53398
+
+
+                 a               b  freq  freq_a  freq_b  freq_pmi
+453946  zaszkodzić         wynikom     5       5       5 -1.787948
+331530     stajnią       wyścigową     5       5       5 -1.787948
+312258    ręcznego        miotacza     5       5       5 -1.787948
+155112       młyny          kulowe     5       5       5 -1.787948
+155111      młynki        młotkowe     5       5       5 -1.787948
+181182   obcowania       płciowego     5       5       5 -1.787948
+110680    klęskami     żywiołowymi     5       5       5 -1.787948
+476059       środa            wlkp     5       5       5 -1.787948
+71651     grzegorz        schetyna     5       5       5 -1.787948
+478459    świeckie  przygotowujące     5       5       5 -1.787948
+
+Process finished with exit code 0
+
+////////////////
+exc 10
+
+                base_a              base_b  freq  freq_a  freq_b  freq_pmi
+102377    młynek:subst        młotkowy:adj     5       5       5 -1.796121
+136     Grzegorz:subst        schetyna:ign     5       5       5 -1.796121
+7           Adam:subst    Mickiewicz:subst     6       6       6 -2.059156
+322420     środa:subst            wlkp:ign     5       7       5 -2.281548
+102375      młyn:subst          kulowy:adj     5       7       5 -2.281548
+444      Piotrek:subst     trybunalski:adj     7       7       7 -2.281548
+185861  przeponowy:adj          rurowy:adj     7       7       8 -2.474193
+323825    świecki:depr  przygotowywać:pact     5       5       8 -2.474193
+215035  skrzynka:subst        podawczy:adj     5       8       5 -2.474193
+185         JANA:subst       Matejko:subst     5      10       5 -2.796121
