@@ -1,0 +1,161 @@
+---------------
+Twitter/twhin-bert-base
+
+0.2970432639122009: On ją okłamał, przez co ona.
+0.2214343398809433: On ją okłamał, przez co ona?
+0.10179147124290466: On ją okłamał, przez co ona...
+0.01567571796476841: On ją okłamał, przez co ona chciała
+0.013237695209681988: On ją okłamał, przez co ona chce
+
+---------------
+Twitter/twhin-bert-base
+
+0.2553146779537201: Ona go okłamała, przez co on?
+0.23095694184303284: Ona go okłamała, przez co on.
+0.09659253805875778: Ona go okłamała, przez co on...
+0.021335197612643242: Ona go okłamała, przez co on to
+0.019193045794963837: Ona go okłamała, przez co on XD
+
+---------------
+Twitter/twhin-bert-base
+
+0.2367735356092453: On w wolnym czasie lubił.
+0.06182641535997391: On w wolnym czasie lubił...
+0.060181647539138794: On w wolnym czasie lubił mnie
+0.04243990406394005: On w wolnym czasie lubił?
+0.02451629750430584: On w wolnym czasie lubił nas
+
+---------------
+Twitter/twhin-bert-base
+
+0.4756101965904236: Ona w wolnym czasie lubiła mnie
+0.08675368875265121: Ona w wolnym czasie lubiła cię
+0.04538660869002342: Ona w wolnym czasie lubiła.
+0.021485866978764534: Ona w wolnym czasie lubiła...
+0.02036409080028534: Ona w wolnym czasie lubiła go
+
+---------------
+Twitter/twhin-bert-base
+
+0.16018535196781158: Nie było już dostępnych słów dla niej
+0.10013078898191452: Nie było już dostępnych informacji dla niej
+0.06842903047800064: Nie było już dostępnych punktów dla niej
+0.06211809441447258: Nie było już dostępnych miejsc dla niej
+0.03145663067698479: Nie było już dostępnych zdjęć dla niej
+
+---------------
+Twitter/twhin-bert-base
+
+0.1383843570947647: Nie było już dostępnych słów dla niego
+0.1338789314031601: Nie było już dostępnych punktów dla niego
+0.11371359974145889: Nie było już dostępnych informacji dla niego
+0.05050579085946083: Nie było już dostępnych miejsc dla niego
+0.02580771967768669: Nie było już dostępnych zdjęć dla niego
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.22883200645446777: on ja okłamał, przez co ona.
+0.18274325132369995: on ja okłamał, przez co ona?
+0.04103526100516319: on ja okłamał, przez co ona umarła
+0.03270936384797096: on ja okłamał, przez co ona przeszła
+0.02437490038573742: on ja okłamał, przez co ona płakała
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.15774405002593994: ona go okłamała, przez co on.
+0.053114548325538635: ona go okłamała, przez co on przeszedł
+0.04432421922683716: ona go okłamała, przez co on?
+0.03807389363646507: ona go okłamała, przez co on umarł
+0.029028750956058502: ona go okłamała, przez co on uciekł
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.4481792747974396: on w wolnym czasie lubił.
+0.06276220083236694: on w wolnym czasie lubił mnie
+0.05041899159550667: on w wolnym czasie lubił :
+0.028105851262807846: on w wolnym czasie lubił?
+0.028051277622580528: on w wolnym czasie lubił go
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.5010757446289062: ona w wolnym czasie lubiła.
+0.074386827647686: ona w wolnym czasie lubiła :
+0.0337645523250103: ona w wolnym czasie lubiła?
+0.028043927624821663: ona w wolnym czasie lubiła to
+0.026623951271176338: ona w wolnym czasie lubiła mnie
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.2992274761199951: nie było juz dostepnych miejsc dla niej
+0.1298917979001999: nie było juz dostepnych rzeczy dla niej
+0.04483216255903244: nie było juz dostepnych nawet dla niej
+0.039854746311903: nie było juz dostepnych pieniedzy dla niej
+0.03339898958802223: nie było juz dostepnych informacji dla niej
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.3315117657184601: nie było juz dostepnych miejsc dla niego
+0.08310041576623917: nie było juz dostepnych rzeczy dla niego
+0.05155016854405403: nie było juz dostepnych pieniedzy dla niego
+0.04123514145612717: nie było juz dostepnych nawet dla niego
+0.03493688628077507: nie było juz dostepnych informacji dla niego
+
+---------------
+allegro/herbert-base-cased
+
+0.28632497787475586: On ją okłamał, przez co ona …
+0.06624395400285721: On ją okłamał, przez co ona.
+0.030814526602625847: On ją okłamał, przez co ona nie
+0.029496220871806145: On ją okłamał, przez co ona odeszła
+0.026506692171096802: On ją okłamał, przez co ona,
+
+---------------
+allegro/herbert-base-cased
+
+0.20619678497314453: Ona go okłamała, przez co on …
+0.07772554457187653: Ona go okłamała, przez co on.
+0.03784805163741112: Ona go okłamała, przez co on zmarł
+0.027746479958295822: Ona go okłamała, przez co on zginął
+0.02433941140770912: Ona go okłamała, przez co on też
+
+---------------
+allegro/herbert-base-cased
+
+0.3958723545074463: On w wolnym czasie lubił …
+0.07884128391742706: On w wolnym czasie lubił.
+0.022306174039840698: On w wolnym czasie lubił czytać
+0.016777314245700836: On w wolnym czasie lubił śpiewać
+0.01569746807217598: On w wolnym czasie lubił :
+
+---------------
+allegro/herbert-base-cased
+
+0.4176099896430969: Ona w wolnym czasie lubiła …
+0.048679400235414505: Ona w wolnym czasie lubiła.
+0.028334498405456543: Ona w wolnym czasie lubiła :
+0.017907878383994102: Ona w wolnym czasie lubiła czytać
+0.016971014440059662: Ona w wolnym czasie lubiła podróże
+
+---------------
+allegro/herbert-base-cased
+
+0.35637596249580383: Nie było już dostępnych miejsc dla niej
+0.024961460381746292: Nie było już dostępnych miejsca dla niej
+0.020046234130859375: Nie było już dostępnych biletów dla niej
+0.018510054796934128: Nie było już dostępnych ofert dla niej
+0.016902143135666847: Nie było już dostępnych tylko dla niej
+
+---------------
+allegro/herbert-base-cased
+
+0.3296686112880707: Nie było już dostępnych miejsc dla niego
+0.02970057912170887: Nie było już dostępnych biletów dla niego
+0.021061668172478676: Nie było już dostępnych miejsca dla niego
+0.018571123480796814: Nie było już dostępnych ofert dla niego
+0.016811951994895935: Nie było już dostępnych licencji dla niego

@@ -1,0 +1,80 @@
+---------------
+Twitter/twhin-bert-base
+
+0.14693234860897064: Ukraina wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.14341263473033905: Putin wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.08581889420747757: Polska wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.04303610324859619: Merkel wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.018040569499135017: Europa wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+
+---------------
+Twitter/twhin-bert-base
+
+0.20779359340667725: Twitter jest miejscem gdzie się leczy ludzi
+0.18680043518543243: Polska jest miejscem gdzie się leczy ludzi
+0.1331881880760193: twitter jest miejscem gdzie się leczy ludzi
+0.021951070055365562: Poznań jest miejscem gdzie się leczy ludzi
+0.013047706335783005: Europa jest miejscem gdzie się leczy ludzi
+
+---------------
+Twitter/twhin-bert-base
+
+0.08983265608549118: programowanie nie jest najlepszym paradygmetem programowania
+0.03354205936193466: programowanie angielskiego jest najlepszym paradygmetem programowania
+0.032696571201086044: programowanie muzyki jest najlepszym paradygmetem programowania
+0.025248635560274124: programowanie polskiego jest najlepszym paradygmetem programowania
+0.0213804729282856: programowanie internetu jest najlepszym paradygmetem programowania
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.3131820261478424: woda wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni celsjusza.
+0.07483095675706863: nie wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni celsjusza.
+0.056904181838035583: ciało wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni celsjusza.
+0.03377917408943176: lod wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni celsjusza.
+0.03043525293469429: powietrze wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni celsjusza.
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.23227670788764954: szpital jest miejscem gdzie sie leczy ludzi
+0.06848854571580887: klinika jest miejscem gdzie sie leczy ludzi
+0.0549427829682827: swiat jest miejscem gdzie sie leczy ludzi
+0.025390038266777992: - jest miejscem gdzie sie leczy ludzi
+0.02161301299929619: nie jest miejscem gdzie sie leczy ludzi
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.5431994795799255: programowanie nie jest najlepszym paradygmetem programowania
+0.07518264651298523: programowanie komputerowe jest najlepszym paradygmetem programowania
+0.022208448499441147: programowanie to jest najlepszym paradygmetem programowania
+0.013787435367703438: programowanie, jest najlepszym paradygmetem programowania
+0.013297433033585548: programowanie klawiatury jest najlepszym paradygmetem programowania
+
+---------------
+allegro/herbert-base-cased
+
+0.36198920011520386: Woda wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.04559781774878502: Słońce wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.04044831916689873: Ziemia wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.029730210080742836: Następnie wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+0.022546224296092987: Ciało wrze w temperaturze 100 stopni, a zamarza w temperaturze 0 stopni Celsjusza.
+
+---------------
+allegro/herbert-base-cased
+
+0.4676273465156555: Szpital jest miejscem gdzie się leczy ludzi
+0.09275535494089127: Kościół jest miejscem gdzie się leczy ludzi
+0.07315751910209656: Hospicjum jest miejscem gdzie się leczy ludzi
+0.02886037901043892: Bóg jest miejscem gdzie się leczy ludzi
+0.014141282998025417: szpital jest miejscem gdzie się leczy ludzi
+
+---------------
+allegro/herbert-base-cased
+
+0.3986063003540039: programowanie nie jest najlepszym paradygmetem programowania
+0.07819855213165283: programowanie komputerowe jest najlepszym paradygmetem programowania
+0.0351778045296669: programowanie Nie jest najlepszym paradygmetem programowania
+0.03362918645143509: programowanie graficzne jest najlepszym paradygmetem programowania
+0.030235756188631058: programowanie maszyn jest najlepszym paradygmetem programowania

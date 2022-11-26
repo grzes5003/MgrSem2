@@ -1,0 +1,345 @@
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+Warszawa to największe miasto
+Warszawa to największe .
+Warszawa to największe miejsce
+Warszawa to największe miasta
+Warszawa to największe pole
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+Nie ma już nikogo w sklepie
+Nie ma już miejsca w sklepie
+Nie ma już jak w sklepie
+Nie ma już tego w sklepie
+Nie ma już go w sklepie
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+Klient przygląda się .
+Klient przygląda się :
+Klient przygląda się !
+Klient przygląda się ,
+Klient przygląda się ?
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+Na podłodze widać .
+Na podłodze widać :
+Na podłodze widać ,
+Na podłodze widać ?
+Na podłodze widać !
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+Programista miał problemy z oprogramowaniem
+Programista miał problemy z komunikacja
+Programista miał problemy z komputerem
+Programista miał problemy z sercem
+Programista miał problemy z waga
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+Podczas konferencji prasowej była mowa o .
+Podczas konferencji prasowej była mowa o :
+Podczas konferencji prasowej była mowa o "
+Podczas konferencji prasowej była mowa o tym
+Podczas konferencji prasowej była mowa o tobie
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+Hej ty, hej
+Hej ty, wstawaj
+Hej ty, ty
+Hej ty, wracaj
+Hej ty, stoj
+
+---------------
+allegro/herbert-base-cased
+
+Warszawa to największe miasto
+Warszawa to największe …
+Warszawa to największe miasta
+Warszawa to największe lotnisko
+Warszawa to największe centrum
+
+---------------
+allegro/herbert-base-cased
+
+Nie ma już go w sklepie
+Nie ma już ich w sklepie
+Nie ma już towaru w sklepie
+Nie ma już jej w sklepie
+Nie ma już produktów w sklepie
+
+---------------
+allegro/herbert-base-cased
+
+Klient przygląda się …
+Klient przygląda się .
+Klient przygląda się firmie
+Klient przygląda się klientowi
+Klient przygląda się im
+
+---------------
+allegro/herbert-base-cased
+
+Na podłodze widać …
+Na podłodze widać :
+Na podłodze widać .
+Na podłodze widać śnieg
+Na podłodze widać słońce
+
+---------------
+allegro/herbert-base-cased
+
+Programista miał problemy z komputerem
+Programista miał problemy z pamięcią
+Programista miał problemy z pracą
+Programista miał problemy z czasem
+Programista miał problemy z nauką
+
+---------------
+allegro/herbert-base-cased
+
+Podczas konferencji prasowej była mowa o …
+Podczas konferencji prasowej była mowa o :
+Podczas konferencji prasowej była mowa o .
+Podczas konferencji prasowej była mowa o projekcie
+Podczas konferencji prasowej była mowa o konferencji
+
+---------------
+allegro/herbert-base-cased
+
+Hej ty, ty
+Hej ty, Hej
+Hej ty, !
+Hej ty, stary
+Hej ty, cześć
+
+====================
+====================
+====================
+
+---------------
+Twitter/twhin-bert-base
+
+0.0930977612733841: Warszawa to największe miasto
+0.07061219215393066: Warszawa to największe święto
+0.058858368545770645: Warszawa to największe szczęście
+0.056101325899362564: Warszawa to największe życie
+0.03864353895187378: Warszawa to największe miejsce
+
+---------------
+Twitter/twhin-bert-base
+
+0.10437881201505661: Warszawa to największa.
+0.09262393414974213: Warszawa to największa liczba
+0.04217538610100746: Warszawa to największa stad
+0.04156910255551338: Warszawa to największa noc
+0.040809500962495804: Warszawa to największa droga
+
+---------------
+Twitter/twhin-bert-base
+
+0.11191368103027344: Nie ma już promocji w sklepie
+0.06194433569908142: Nie ma już nic w sklepie
+0.058163248002529144: Nie ma już mnie w sklepie
+0.05231675133109093: Nie ma już ludzi w sklepie
+0.05078345164656639: Nie ma już miejsca w sklepie
+
+---------------
+Twitter/twhin-bert-base
+
+0.21785305440425873: Klient przygląda się.
+0.08842486143112183: Klient przygląda się...
+0.0397266149520874: Klient przygląda się!
+0.028738411143422127: Klient przygląda się XD
+0.02085655927658081: Klient przygląda się :)
+
+---------------
+Twitter/twhin-bert-base
+
+0.173320472240448: Na podłodze widać.
+0.1354149580001831: Na podłodze widać...
+0.024836376309394836: Na podłodze widać!
+0.023743512108922005: Na podłodze widać?
+0.017019985243678093: Na podłodze widać XD
+
+---------------
+Twitter/twhin-bert-base
+
+0.02999805472791195: Programista miał problemy z pracy
+0.026918794959783554: Programista miał problemy z techniczne
+0.02089770697057247: Programista miał problemy z pamięci
+0.020373858511447906: Programista miał problemy z serca
+0.01974852755665779: Programista miał problemy z TT
+
+---------------
+Twitter/twhin-bert-base
+
+0.060451164841651917: Podczas konferencji prasowej była mowa o Polsce
+0.046879056841135025: Podczas konferencji prasowej była mowa o...
+0.045503608882427216: Podczas konferencji prasowej była mowa o LGBT
+0.01607738994061947: Podczas konferencji prasowej była mowa o Legii
+0.015368419699370861: Podczas konferencji prasowej była mowa o Polskę
+
+---------------
+Twitter/twhin-bert-base
+
+0.33492061495780945: Hej ty, ty
+0.016480088233947754: Hej ty,
+0.01292542926967144: Hej ty, TY
+0.008864645846188068: Hej ty, jo
+0.00808799546211958: Hej ty, ja
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.6675125956535339: warszawa to najwieksze miasto
+0.10679508000612259: warszawa to najwieksze.
+0.030097179114818573: warszawa to najwieksze miejsce
+0.020781168714165688: warszawa to najwieksze miasta
+0.011447517201304436: warszawa to najwieksze pole
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.4390929937362671: warszawa to najwieksza.
+0.035383351147174835: warszawa to najwieksza!
+0.01972784288227558: warszawa to najwieksza gora
+0.01793905533850193: warszawa to najwieksza …
+0.01572314277291298: warszawa to najwieksza siła
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.09202031046152115: nie ma juz nikogo w sklepie
+0.06447332352399826: nie ma juz miejsca w sklepie
+0.05212472751736641: nie ma juz jak w sklepie
+0.05138855054974556: nie ma juz tego w sklepie
+0.0480557419359684: nie ma juz go w sklepie
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.7539980411529541: klient przyglada sie.
+0.10854656994342804: klient przyglada sie :
+0.04214685410261154: klient przyglada sie!
+0.02272254228591919: klient przyglada sie,
+0.0163792222738266: klient przyglada sie?
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.33061400055885315: na podłodze widac.
+0.26284393668174744: na podłodze widac :
+0.03132801875472069: na podłodze widac,
+0.019192038103938103: na podłodze widac?
+0.01794431544840336: na podłodze widac!
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.1267079859972: programista miał problemy z oprogramowaniem
+0.09293035417795181: programista miał problemy z komunikacja
+0.09124763309955597: programista miał problemy z komputerem
+0.043439432978630066: programista miał problemy z sercem
+0.03401646018028259: programista miał problemy z waga
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.050055116415023804: podczas konferencji prasowej była mowa o.
+0.03837902843952179: podczas konferencji prasowej była mowa o :
+0.023953860625624657: podczas konferencji prasowej była mowa o "
+0.020442701876163483: podczas konferencji prasowej była mowa o tym
+0.01684631034731865: podczas konferencji prasowej była mowa o tobie
+
+---------------
+dkleczek/bert-base-polish-uncased-v1
+
+0.062354590743780136: hej ty, hej
+0.04484829679131508: hej ty, wstawaj
+0.039922598749399185: hej ty, ty
+0.03517844155430794: hej ty, wracaj
+0.03438328579068184: hej ty, stoj
+
+---------------
+allegro/herbert-base-cased
+
+0.8534314632415771: Warszawa to największe miasto
+0.02993231639266014: Warszawa to największe …
+0.024024881422519684: Warszawa to największe miasta
+0.02113921567797661: Warszawa to największe lotnisko
+0.015281633473932743: Warszawa to największe centrum
+
+---------------
+allegro/herbert-base-cased
+
+0.40941399335861206: Warszawa to największa …
+0.33559492230415344: Warszawa to największa stolica
+0.028869330883026123: Warszawa to największa Polska
+0.012143915519118309: Warszawa to największa miejscowość
+0.01157879177480936: Warszawa to największa.
+
+---------------
+allegro/herbert-base-cased
+
+0.11419010907411575: Nie ma już go w sklepie
+0.08052195608615875: Nie ma już ich w sklepie
+0.060141827911138535: Nie ma już towaru w sklepie
+0.042521536350250244: Nie ma już jej w sklepie
+0.04238000512123108: Nie ma już produktów w sklepie
+
+---------------
+allegro/herbert-base-cased
+
+0.18091708421707153: Klient przygląda się …
+0.06357913464307785: Klient przygląda się.
+0.0398947112262249: Klient przygląda się firmie
+0.038056764751672745: Klient przygląda się klientowi
+0.02228417620062828: Klient przygląda się im
+
+---------------
+allegro/herbert-base-cased
+
+0.363415390253067: Na podłodze widać …
+0.0873442143201828: Na podłodze widać :
+0.027243783697485924: Na podłodze widać.
+0.010787170380353928: Na podłodze widać śnieg
+0.008453908376395702: Na podłodze widać słońce
+
+---------------
+allegro/herbert-base-cased
+
+0.3946148157119751: Programista miał problemy z komputerem
+0.0752498060464859: Programista miał problemy z pamięcią
+0.024006733670830727: Programista miał problemy z pracą
+0.013682381249964237: Programista miał problemy z czasem
+0.013133944943547249: Programista miał problemy z nauką
+
+---------------
+allegro/herbert-base-cased
+
+0.5495720505714417: Podczas konferencji prasowej była mowa o …
+0.32735177874565125: Podczas konferencji prasowej była mowa o :
+0.00892280787229538: Podczas konferencji prasowej była mowa o.
+0.004047249909490347: Podczas konferencji prasowej była mowa o projekcie
+0.002830959390848875: Podczas konferencji prasowej była mowa o konferencji
+
+---------------
+allegro/herbert-base-cased
+
+0.14295291900634766: Hej ty, ty
+0.07341202348470688: Hej ty, Hej
+0.0654640942811966: Hej ty,!
+0.03585439920425415: Hej ty, stary
+0.015297395177185535: Hej ty, cześć
