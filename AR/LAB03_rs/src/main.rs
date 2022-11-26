@@ -78,7 +78,7 @@ fn main() {
             let mut arr = Array2::from_shape_vec(
                 (result.len(), result[0].len()),
                 result.into_iter().flatten().collect::<Vec<f32>>()).unwrap().to_owned();
-            write_npy("results/result.npy", &arr);
+            write_npy("results/result.npy", &arr).unwrap();
         }
     }
 }
