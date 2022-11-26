@@ -20,3 +20,8 @@ spacy==3.4
 morfeusz2
 levenshtein
 lxml
+torch
+transformers
+sacremoses
+sentencepiece
+protobuf==3.20
