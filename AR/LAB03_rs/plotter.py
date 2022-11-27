@@ -3,6 +3,8 @@ from dataclasses import dataclass
 
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 
 @dataclass(repr=True)
@@ -33,6 +35,41 @@ def read_logs(path: str) -> [Res]:
     return [Res.from_str(line) for line in lines]
 
 
+def obj2df(results: [Res]) -> pd.DataFrame:
+    record = []
+    for item in results:
+        record.append([item.time, item.iters, item.n, item.cores])
+    return pd.DataFrame(record, columns=['time', 'iters', 'n', 'cores'])
+
+
+def plot_eff(df: pd.DataFrame):
+    t1 = df[df['cores'] == 1].groupby('n').mean()
+    df['speedup'] = t1.loc[df['n']].reset_index()['time'] / df['time']
+    df['eff'] = df['speedup'] / df['cores']
+
+    sns.set_theme(style="darkgrid")
+    ax = sns.lineplot(x=range(0, 13), y=np.repeat(1, 13), linestyle='--', lw=1)
+    sns.pointplot(x='cores', y='eff', data=df, hue='n', errorbar='sd', capsize=.2, ax=ax)
+
+    ax.set(ylabel='Efficiency')
+    ax.set_title('Efficiency based on used cores')
+    ax.set(xlabel='Number of cores')
+    ax.legend(title='Size of problem [n]')
+
+    plt.show()
+
+    sns.set_theme(style="darkgrid")
+    ax = sns.pointplot(x="cores", y='speedup', data=df, hue='n', errorbar='sd')
+    plt.plot([0, 6], [1, 12], linestyle='--', lw=1)
+
+    ax.set(ylabel='Speedup')
+    ax.set_title('Speedup based on used cores')
+    ax.set(xlabel='Number of cores')
+    ax.legend(title='Size of problem [n]')
+
+    plt.show()
+
+
 def plot(filepath: str):
     arr = np.load(filepath)
     plt.imshow(arr, origin='upper', cmap='hot')
@@ -47,5 +84,8 @@ if __name__ == '__main__':
     # plot(path)
 
     path_perf = 'results/performance.log'
-    a = read_logs(path_perf)
+    res = read_logs(path_perf)
+    df = obj2df(res)
+
+    plot_eff(df)
     ...
