@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH -J MPISieve_rs
+#SBATCH -J MPI_AR_LAB04_GK
 #SBATCH -N 1
-#SBATCH --ntasks-per-node=4
-#SBATCH --time=00:05:00
+#SBATCH --ntasks-per-node=12
+#SBATCH --time=00:25:00
 #SBATCH -A plgar2022-cpu
 #SBATCH -p plgrid
 #SBATCH --output="output.out"
@@ -26,4 +26,18 @@ cargo build --release
 
 echo "Starting LAB03_rs"
 
-mpiexec -np 4 ./target/release/LAB03_rs --it 100 -n 100
+prog=./target/release/LAB03_rs
+
+ITER=1000
+N=10000
+
+for ((iter = 3; iter > 0; iter--)); do
+  for ((n_size = 100; n_size <= N; n_size *= 10)); do
+    mpiexec -np 1 "$prog" --it "$ITER" -n "$n_size"
+    for ((threads = 2; threads <= 12; threads += 2)); do
+      mpiexec -np "$threads" "$prog" --it "$ITER" -n "$n_size"
+    done
+  done
+done
+
+echo $?
