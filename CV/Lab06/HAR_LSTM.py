@@ -43,7 +43,7 @@ def plot_confusion_matrix_lstm(res):
     plt.show()
 
 
-NORMALIZED = True
+NORMALIZED = False
 
 
 # Load a single file as a numpy array
@@ -111,7 +111,8 @@ def load_dataset(prefix=''):
 
 # Fit and evaluate a model
 def evaluate_model(trainX, trainy, testX, testy):
-    epochs, batch_size = 15, 64
+    print(f'1: shapes: {trainX.shape=} {trainy.shape=} {testX.shape=} {testy.shape=}')
+    epochs, batch_size = 1, 64
     verbose, n_steps, n_length = 1, 4, 32
     n_timesteps, n_features, n_outputs = trainX.shape[1], trainX.shape[2], trainy.shape[1]
     model = 'lstm'
@@ -123,6 +124,7 @@ def evaluate_model(trainX, trainy, testX, testy):
         testX = testX.reshape((testX.shape[0], n_steps, 1, n_length, n_features))
     model = Models(model, n_timesteps, n_features, n_outputs, n_steps, n_length)
     model.model.fit(trainX, trainy, epochs=epochs, batch_size=batch_size, verbose=verbose)
+    print(f'2: shapes: {trainX.shape=} {trainy.shape=} {testX.shape=} {testy.shape=}')
     print('fit')
     _, accuracy = model.model.evaluate(testX, testy, batch_size=batch_size, verbose=verbose)
     print('Accuracy: {:.4f}'.format(accuracy))
@@ -133,6 +135,7 @@ def evaluate_model(trainX, trainy, testX, testy):
 # Execute the program
 def main():
     trainX, trainy, testX, testy = load_dataset()
+    print(f'0: shapes: {trainX.shape=} {trainy.shape=} {testX.shape=} {testy.shape=}')
     evaluate_model(trainX, trainy, testX, testy)
 
 
