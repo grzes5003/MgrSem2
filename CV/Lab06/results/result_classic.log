@@ -1,0 +1,40 @@
+X test shape: (2947, 128, 9), y test shape: (2947, 1)
+After one hot encoding, X train shape: (7352, 51, 9), y train shape: (7352, 6), X test shape: (2947, 128, 9), y test shape: (2947, 6)
+
+X test shape: (2947, 128, 9), y test shape: (2947, 1)
+After one hot encoding, X train shape: (7352, 128, 9), y train shape: (7352, 6), X test shape: (2947, 128, 9), y test shape: (2947, 6)
+
+
+Epoch 1/15
+115/115 [==============================] - 9s 66ms/step - loss: 1.2982 - accuracy: 0.4611
+Epoch 2/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.9848 - accuracy: 0.5869
+Epoch 3/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.9116 - accuracy: 0.6211
+Epoch 4/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.6872 - accuracy: 0.7353
+Epoch 5/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.5888 - accuracy: 0.7690
+Epoch 6/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.4148 - accuracy: 0.8562
+Epoch 7/15
+115/115 [==============================] - 8s 66ms/step - loss: 0.6903 - accuracy: 0.7742
+Epoch 8/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.6140 - accuracy: 0.7802
+Epoch 9/15
+115/115 [==============================] - 8s 68ms/step - loss: 0.3755 - accuracy: 0.8681
+Epoch 10/15
+115/115 [==============================] - 8s 68ms/step - loss: 0.3396 - accuracy: 0.8810
+Epoch 11/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.2753 - accuracy: 0.9027
+Epoch 12/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.2561 - accuracy: 0.9108
+Epoch 13/15
+115/115 [==============================] - 8s 66ms/step - loss: 0.2225 - accuracy: 0.9181
+Epoch 14/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.2178 - accuracy: 0.9238
+Epoch 15/15
+115/115 [==============================] - 8s 67ms/step - loss: 0.2017 - accuracy: 0.9234
+47/47 [==============================] - 1s 18ms/step - loss: 0.3019 - accuracy: 0.8992
+Accuracy: 0.8992
+93/93 [==============================] - 1s 13ms/step
