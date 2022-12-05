@@ -26,23 +26,28 @@ class QLearner:
         self.q_table = np.zeros(self.buckets + (self.environment.action_space.n,))
 
         self.episode = 0
-        self.min_lr = 0.1
-        self.min_epsilon = 0.1
-        self.discount = 1.0
+        self.min_lr = 0.05
+        self.min_epsilon = 0.05
+        self.discount = 0.95
         self.decay = 25
 
-    def learn(self, max_attempts):
-        for idx in range(max_attempts):
-            self.episode += 1
-            reward_sum = self.attempt()
-            print(f"{idx} {reward_sum}")
+    def learn(self, max_attempts, *, save: bool = False):
+        with open('result.txt', 'w') as f:
+            f.write(f"idx,lr,epsilon,reward_sum,discount,decay")
+            for idx in range(max_attempts):
+                self.episode += 1
+                reward_sum = self.attempt()
+                if save:
+                    f.write(f"{idx},{self.min_lr},{self.min_epsilon},{reward_sum},{self.discount},{self.decay}\n")
+                else:
+                    print(f"{idx} {reward_sum}")
+        print('done')
 
     def attempt(self):
         observation = self.discretise(self.environment.reset()[0])
         done = False
         reward_sum = 0.0
         while not done:
-            # self.environment.render()
             action = self.pick_action(observation)
             new_observation, reward, done, _, info = self.environment.step(action)
             new_observation = self.discretise(new_observation)
@@ -53,11 +58,6 @@ class QLearner:
         return reward_sum
 
     def discretise(self, observation):
-        # bins = np.linspace(self.lower_bounds, self.upper_bounds, 5)
-        # obs = np.digitize(observation, bins)
-        #
-        # for idx in
-
         discretized = list()
         for i in range(len(observation)):
             scaling = (observation[i] + abs(self.lower_bounds[i])) / (self.upper_bounds[i] - self.lower_bounds[i])
@@ -65,7 +65,6 @@ class QLearner:
             new_obs = min(self.buckets[i] - 1, max(0, new_obs))
             discretized.append(new_obs)
         return tuple(discretized)
-        # return tuple(obs)
 
     def pick_action(self, observation):
         if np.random.random() < self.epsilon:
@@ -87,7 +86,7 @@ class QLearner:
 
 def main():
     learner = QLearner()
-    learner.learn(10000)
+    learner.learn(5000, save=True)
 
 
 if __name__ == '__main__':
