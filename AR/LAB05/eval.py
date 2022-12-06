@@ -1,4 +1,3 @@
-import itertools
 from dataclasses import dataclass
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -25,7 +24,7 @@ def read_logs(path: str) -> [Res]:
     with open(path, 'r') as f:
         lines = f.readlines()
 
-    lines = list(itertools.dropwhile(lambda line: line[0] != _start_char, lines))
+    lines = list(filter(lambda line: line[0] == _start_char, lines))
     lines = [line.replace(' ', '').replace('\n', '') for line in lines]
 
     return [Res.from_str(line) for line in lines]
@@ -38,7 +37,7 @@ def obj2df(results: [Res]) -> pd.DataFrame:
     return pd.DataFrame(record, columns=['time', 'line', 'rank'])
 
 
-def exc02(df: pd.DataFrame):
+def exc02(df: pd.DataFrame, log_scale: bool = False):
     """
     sprawdz czy czasy różnią się w zależności od numeru linii,
     policz róznicę między największym, a najmniejszym czasem
@@ -46,7 +45,9 @@ def exc02(df: pd.DataFrame):
     diff = df['time'].max() - df['time'].min()
     print(f'{diff}')
 
-    sns.lineplot(x='line', y='time', data=df)
+    ax = sns.lineplot(x='line', y='time', data=df, err_style='band', errorbar='sd')
+    if log_scale:
+        ax.set(yscale="log")
     plt.show()
 
 
@@ -56,25 +57,29 @@ def exc03(df: pd.DataFrame):
     sprawdz, w jaki sposób linie są przyporządkowywane do procesów
     czy można powiedzieć że jest to podział blokowy albo cykliczny?
     """
+    print('\n> przyporządkowywane do procesów')
     gdf.apply(print)
 
     """
     porownaj liczbę linii przyporządkowaną do każdego z procesów workerów
     """
+    print('\n> porownaj liczbę linii przyporządkowaną do każdego z procesów workerów')
     print(gdf.size())
 
     """
     Policz sumę czasów dla każdego z procesów workerów. 
     Porównaj te czasy do siebie oraz  do czasu działania całego programu.
     """
+    print('\n> Policz sumę czasów dla każdego z procesów workerów.')
     print(gdf['time'].sum())
 
 
 if __name__ == '__main__':
     sns.set_theme(style="darkgrid")
 
-    path_perf = 'results.log'
+    path_perf = 'result_yes_single.log'
     res = read_logs(path_perf)
     df = obj2df(res)
 
+    # exc02(df, log_scale=True)
     exc03(df)
