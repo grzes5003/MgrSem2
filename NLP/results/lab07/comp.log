@@ -1,0 +1,11 @@
+type 1
+                                 name  accuracy  precision    recall        f1  type
+0                  GaussianNaiveBayes     0.782   0.298507  0.243902  0.268456     1
+2                            FastText     0.872        NaN       NaN       NaN     1
+4  AutoModelForSequenceClassification     0.892   0.609631  0.887346  0.649095     1
+
+type 2
+                                 name  accuracy  precision    recall           f1  type
+1                  GaussianNaiveBayes     0.787   0.408183  0.401325  1  0.396831     2
+3                            FastText     0.866        NaN       NaN  3       NaN     2
+5  AutoModelForSequenceClassification     0.867   0.336391  0.622289  5  0.315623     2

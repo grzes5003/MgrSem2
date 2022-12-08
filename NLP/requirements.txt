@@ -25,3 +25,7 @@ transformers
 sacremoses
 sentencepiece
 protobuf==3.20
+datasets
+scikit-learn
+fasttext-wheel
+lime

@@ -5,21 +5,6 @@ from transformers import AutoModelForMaskedLM, AutoTokenizer, pipeline
 import torch
 
 
-# def predict_n(sequence, tokenizer, model, *, n: int = 5):
-#     sequence = sequence.replace('<mask>', tokenizer.mask_token)
-#     inputs = tokenizer(sequence, return_tensors="pt")
-#     mask_token_index = torch.where(inputs["input_ids"] == tokenizer.mask_token_id)[1]
-#     token_logits = model(**inputs).logits
-#     mask_token_logits = token_logits[0, mask_token_index, :]
-#     result = torch.topk(mask_token_logits, n, dim=1).indices[0].tolist()
-#     return [sequence.replace(tokenizer.mask_token, tokenizer.decode([res])) for res in result]
-#
-#
-# def load_model(name: str):
-#     return AutoTokenizer.from_pretrained(name), \
-#            AutoModelForMaskedLM.from_pretrained(name)
-
-
 def fill_mask(models, sentences):
     for unmasker in models:
         for sentence in sentences:
