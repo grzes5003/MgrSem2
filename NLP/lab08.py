@@ -51,8 +51,8 @@ def lem_and_split(files: [Tuple[str, Any]]):
     Use the lemmatized and sentence split documents
     """
     for file, content in files:
-        # if os.path.isfile(f'results/lab08/{file}.csv'):
-        #     continue
+        if os.path.isfile(f'results/lab08/{file}.csv'):
+            continue
         print(f'>>> parsing {file}')
         resp = requests.post("http://localhost:9200", data=content.encode("utf-8"))
         data = parse_content(resp.content.decode("utf-8"))
@@ -64,10 +64,6 @@ def lem_and_split(files: [Tuple[str, Any]]):
 def exc05(path: str):
     files = os.listdir(path)
 
-    # sizes = [(file_path, os.stat(f'{path}/{file_path}').st_size)
-    #          for file_path in files]
-    #
-    # df_result = pd.DataFrame()
     dfs = []
     for file in files:
         df = pd.read_csv(f'{path}/{file}')
