@@ -15,8 +15,8 @@ def top_50(path: str):
              for file_path in files]
     sizes.sort(key=lambda item: item[1], reverse=True)
 
-    paths = [f'{path}/{file}' for (file, _) in sizes[:50]]
-    return list([(file, content) for ((file, _), content) in zip(sizes[:50], list(read_files_list(paths)))])
+    paths = [f'{path}/{file}' for (file, _) in sizes]
+    return list([(file, content) for ((file, _), content) in zip(sizes, list(read_files_list(paths)))])
 
 
 def chunkwise(t, size=2):
@@ -51,7 +51,7 @@ def lem_and_split(files: [Tuple[str, Any]]):
     Use the lemmatized and sentence split documents
     """
     for file, content in files:
-        if os.path.isfile(f'results/lab08/{file}.csv'):
+        if os.path.isfile(f'data/tagged/{file}.csv'):
             continue
         print(f'>>> parsing {file}')
         resp = requests.post("http://localhost:9200", data=content.encode("utf-8"))
@@ -84,8 +84,8 @@ def exc05(path: str):
 
 if __name__ == '__main__':
     path = 'C:/Users/xgg/PycharmProjects/NLP/data/ustawy'
-    load_path = 'C:/Users/xgg/PycharmProjects/MgrSem2/NLP/results/lab08'
-    # res = top_50(path)
-    # lem_and_split(res)
+    load_path = 'C:/Users/xgg/PycharmProjects/MgrSem2/NLP/data/tagged'
+    res = top_50(path)
+    lem_and_split(res)
 
-    exc05(load_path)
+    # exc05(load_path)
