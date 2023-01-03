@@ -26,14 +26,14 @@ class QLearner:
         self.q_table = np.zeros(self.buckets + (self.environment.action_space.n,))
 
         self.episode = 0
-        self.min_lr = 0.05
-        self.min_epsilon = 0.05
-        self.discount = 0.95
+        self.min_lr = 0.1
+        self.min_epsilon = 0.1
+        self.discount = 1.0
         self.decay = 25
 
     def learn(self, max_attempts, *, save: bool = False):
-        with open('result.txt', 'w') as f:
-            f.write(f"idx,lr,epsilon,reward_sum,discount,decay")
+        with open('results/result_01_4.csv', 'w') as f:
+            f.write(f"idx,lr,epsilon,reward_sum,discount,decay\n")
             for idx in range(max_attempts):
                 self.episode += 1
                 reward_sum = self.attempt()
@@ -44,20 +44,20 @@ class QLearner:
         print('done')
 
     def attempt(self):
-        observation = self.discretise(self.environment.reset()[0])
+        observation = self.discretize(self.environment.reset()[0])
         done = False
         reward_sum = 0.0
         while not done:
             action = self.pick_action(observation)
             new_observation, reward, done, _, info = self.environment.step(action)
-            new_observation = self.discretise(new_observation)
+            new_observation = self.discretize(new_observation)
             self.update_knowledge(action, observation, new_observation, reward)
             observation = new_observation
             reward_sum += reward
         self.attempt_no += 1
         return reward_sum
 
-    def discretise(self, observation):
+    def discretize(self, observation):
         discretized = list()
         for i in range(len(observation)):
             scaling = (observation[i] + abs(self.lower_bounds[i])) / (self.upper_bounds[i] - self.lower_bounds[i])
