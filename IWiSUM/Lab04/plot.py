@@ -28,12 +28,12 @@ def sd(df_path: str, title: str):
 if __name__ == '__main__':
     sns.set_theme(style="darkgrid")
 
-    paths = ['results/result_01',
-             'results/result_02',
-             'results/result_03',
-             'results/result_04']
+    paths = ['results/s_result_01',
+             'results/s_result_02',
+             'results/s_result_03',
+             'results/s_result_04']
 
     # dfs = [pd.read_csv(path) for path in paths]
 
-    # avg(dfs[3], "result 4")
-    sd(paths[3], "result 4")
+    # avg(dfs[1], "SARSA - result 4")
+    sd(paths[3], "SARSA - result 4")
